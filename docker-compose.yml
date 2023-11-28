@@ -8,7 +8,6 @@ services:
       MYSQL_PASSWORD: sonarqube.2022*
       MYSQL_DATABASE: /var/lib/mysql/data/
       MYSQL_ROOT_PASSWORD: sonarqube.2022*
-#      MYSQL_ALLOW_EMPTY_PASSWORD:  
     expose:
       - 5432
     volumes:
