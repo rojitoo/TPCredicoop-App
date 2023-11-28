@@ -1,6 +1,9 @@
 # Use an official Python runtime as a parent image
 FROM python:3.9-slim
 
+# Install ping
+RUN apt-get update && apt-get install -y iputils-ping
+
 # Set the working directory to /app
 WORKDIR /app
 

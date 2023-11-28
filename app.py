@@ -1,11 +1,13 @@
 from flask import Flask, render_template
 import pymysql
+import time
 
 app = Flask(__name__, template_folder='template')
 
 # Configuración de la base de datos
 db_config = {
-    'host': 'joomladb',  # Cambia esto según tu configuración
+    'host': '192.168.0.31',  # Cambia esto según tu configuración
+    'port': 3306,
     'user': 'root',
     'password': 'admin123',
     'database': 'joomla_db',
@@ -16,6 +18,7 @@ db_config = {
 # Ruta para mostrar la lista de artículos
 @app.route('/lista_articulos')
 def mostrar_articulos():
+    time.sleep(10)
     # Conectar a la base de datos
     connection = pymysql.connect(**db_config)
 
