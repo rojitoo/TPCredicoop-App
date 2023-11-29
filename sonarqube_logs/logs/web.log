@@ -2465,3 +2465,1493 @@ java.lang.InterruptedException: null
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
 	at java.base/java.lang.Thread.run(Thread.java:829)
 2023.11.28 03:54:52 INFO  web[][o.s.s.app.WebServer] Web Server stopped
+2023.11.28 22:12:50 INFO  web[][o.s.p.ProcessEntryPoint] Starting Web Server
+2023.11.28 22:12:53 INFO  web[][o.s.s.p.LogServerVersion] SonarQube Server / 9.7.1.62043 / 13c69ab992096c497badccbdb4a31110594574fd
+2023.11.28 22:12:55 WARN  web[][o.s.c.a.AnnotationConfigApplicationContext] Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'jdk.internal.loader.ClassLoaders$AppClassLoader@5c29bfd-org.sonar.server.platform.db.EmbeddedDatabaseFactory': Initialization of bean failed; nested exception is java.lang.IllegalStateException: Unable to start database
+2023.11.28 22:12:55 ERROR web[][o.s.s.p.PlatformImpl] Web server startup failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'jdk.internal.loader.ClassLoaders$AppClassLoader@5c29bfd-org.sonar.server.platform.db.EmbeddedDatabaseFactory': Initialization of bean failed; nested exception is java.lang.IllegalStateException: Unable to start database
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:628)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:955)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:918)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
+	at org.sonar.core.platform.SpringComponentContainer.startComponents(SpringComponentContainer.java:187)
+	at org.sonar.server.platform.platformlevel.PlatformLevel.start(PlatformLevel.java:80)
+	at org.sonar.server.platform.platformlevel.PlatformLevel1.start(PlatformLevel1.java:164)
+	at org.sonar.server.platform.PlatformImpl.start(PlatformImpl.java:196)
+	at org.sonar.server.platform.PlatformImpl.startLevel1Container(PlatformImpl.java:162)
+	at org.sonar.server.platform.PlatformImpl.init(PlatformImpl.java:76)
+	at org.sonar.server.platform.web.PlatformServletContextListener.contextInitialized(PlatformServletContextListener.java:43)
+	at org.apache.catalina.core.StandardContext.listenerStart(StandardContext.java:4768)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5230)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1396)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1386)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:140)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:919)
+	at org.apache.catalina.core.StandardHost.startInternal(StandardHost.java:835)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1396)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1386)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:140)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:919)
+	at org.apache.catalina.core.StandardEngine.startInternal(StandardEngine.java:263)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.StandardService.startInternal(StandardService.java:432)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.StandardServer.startInternal(StandardServer.java:927)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.startup.Tomcat.start(Tomcat.java:486)
+	at org.sonar.server.app.EmbeddedTomcat.start(EmbeddedTomcat.java:72)
+	at org.sonar.server.app.WebServer.start(WebServer.java:55)
+	at org.sonar.process.ProcessEntryPoint.launch(ProcessEntryPoint.java:97)
+	at org.sonar.process.ProcessEntryPoint.launch(ProcessEntryPoint.java:81)
+	at org.sonar.server.app.WebServer.main(WebServer.java:104)
+Caused by: java.lang.IllegalStateException: Unable to start database
+	at org.sonar.server.platform.db.EmbeddedDatabase.startServer(EmbeddedDatabase.java:88)
+	at org.sonar.server.platform.db.EmbeddedDatabase.start(EmbeddedDatabase.java:63)
+	at org.sonar.server.platform.db.EmbeddedDatabaseFactory.start(EmbeddedDatabaseFactory.java:49)
+	at org.sonar.core.platform.StartableBeanPostProcessor.postProcessBeforeInitialization(StartableBeanPostProcessor.java:33)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyBeanPostProcessorsBeforeInitialization(AbstractAutowireCapableBeanFactory.java:440)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1796)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620)
+	... 44 common frames omitted
+Caused by: org.h2.jdbc.JdbcSQLInvalidAuthorizationSpecException: Wrong user name or password [28000-214]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:510)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.message.DbException.get(DbException.java:188)
+	at org.h2.engine.Engine.validateUserAndPassword(Engine.java:393)
+	at org.h2.engine.Engine.createSession(Engine.java:206)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:338)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:122)
+	at org.h2.Driver.connect(Driver.java:59)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:677)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:251)
+	at org.sonar.server.platform.db.EmbeddedDatabase.createDatabase(EmbeddedDatabase.java:115)
+	at org.sonar.server.platform.db.EmbeddedDatabase.startServer(EmbeddedDatabase.java:79)
+	... 50 common frames omitted
+2023.11.28 22:12:55 INFO  web[][o.s.s.a.EmbeddedTomcat] HTTP connector enabled on port 9000
+2023.11.28 22:12:55 INFO  web[][o.s.p.ProcessEntryPoint] Hard stopping process
+2023.11.28 22:13:07 INFO  web[][o.s.p.ProcessEntryPoint] Starting Web Server
+2023.11.28 22:13:09 INFO  web[][o.s.s.p.LogServerVersion] SonarQube Server / 9.7.1.62043 / 13c69ab992096c497badccbdb4a31110594574fd
+2023.11.28 22:13:10 WARN  web[][o.s.c.a.AnnotationConfigApplicationContext] Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'jdk.internal.loader.ClassLoaders$AppClassLoader@5c29bfd-org.sonar.server.platform.db.EmbeddedDatabaseFactory': Initialization of bean failed; nested exception is java.lang.IllegalStateException: Unable to start database
+2023.11.28 22:13:10 ERROR web[][o.s.s.p.PlatformImpl] Web server startup failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'jdk.internal.loader.ClassLoaders$AppClassLoader@5c29bfd-org.sonar.server.platform.db.EmbeddedDatabaseFactory': Initialization of bean failed; nested exception is java.lang.IllegalStateException: Unable to start database
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:628)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:955)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:918)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
+	at org.sonar.core.platform.SpringComponentContainer.startComponents(SpringComponentContainer.java:187)
+	at org.sonar.server.platform.platformlevel.PlatformLevel.start(PlatformLevel.java:80)
+	at org.sonar.server.platform.platformlevel.PlatformLevel1.start(PlatformLevel1.java:164)
+	at org.sonar.server.platform.PlatformImpl.start(PlatformImpl.java:196)
+	at org.sonar.server.platform.PlatformImpl.startLevel1Container(PlatformImpl.java:162)
+	at org.sonar.server.platform.PlatformImpl.init(PlatformImpl.java:76)
+	at org.sonar.server.platform.web.PlatformServletContextListener.contextInitialized(PlatformServletContextListener.java:43)
+	at org.apache.catalina.core.StandardContext.listenerStart(StandardContext.java:4768)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5230)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1396)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1386)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:140)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:919)
+	at org.apache.catalina.core.StandardHost.startInternal(StandardHost.java:835)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1396)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1386)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:140)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:919)
+	at org.apache.catalina.core.StandardEngine.startInternal(StandardEngine.java:263)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.StandardService.startInternal(StandardService.java:432)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.StandardServer.startInternal(StandardServer.java:927)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.startup.Tomcat.start(Tomcat.java:486)
+	at org.sonar.server.app.EmbeddedTomcat.start(EmbeddedTomcat.java:72)
+	at org.sonar.server.app.WebServer.start(WebServer.java:55)
+	at org.sonar.process.ProcessEntryPoint.launch(ProcessEntryPoint.java:97)
+	at org.sonar.process.ProcessEntryPoint.launch(ProcessEntryPoint.java:81)
+	at org.sonar.server.app.WebServer.main(WebServer.java:104)
+Caused by: java.lang.IllegalStateException: Unable to start database
+	at org.sonar.server.platform.db.EmbeddedDatabase.startServer(EmbeddedDatabase.java:88)
+	at org.sonar.server.platform.db.EmbeddedDatabase.start(EmbeddedDatabase.java:63)
+	at org.sonar.server.platform.db.EmbeddedDatabaseFactory.start(EmbeddedDatabaseFactory.java:49)
+	at org.sonar.core.platform.StartableBeanPostProcessor.postProcessBeforeInitialization(StartableBeanPostProcessor.java:33)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyBeanPostProcessorsBeforeInitialization(AbstractAutowireCapableBeanFactory.java:440)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1796)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620)
+	... 44 common frames omitted
+Caused by: org.h2.jdbc.JdbcSQLInvalidAuthorizationSpecException: Wrong user name or password [28000-214]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:510)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.message.DbException.get(DbException.java:188)
+	at org.h2.engine.Engine.validateUserAndPassword(Engine.java:393)
+	at org.h2.engine.Engine.createSession(Engine.java:206)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:338)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:122)
+	at org.h2.Driver.connect(Driver.java:59)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:677)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:251)
+	at org.sonar.server.platform.db.EmbeddedDatabase.createDatabase(EmbeddedDatabase.java:115)
+	at org.sonar.server.platform.db.EmbeddedDatabase.startServer(EmbeddedDatabase.java:79)
+	... 50 common frames omitted
+2023.11.28 22:13:10 INFO  web[][o.s.s.a.EmbeddedTomcat] HTTP connector enabled on port 9000
+2023.11.28 22:13:10 INFO  web[][o.s.p.ProcessEntryPoint] Hard stopping process
+2023.11.28 22:13:22 INFO  web[][o.s.p.ProcessEntryPoint] Starting Web Server
+2023.11.28 22:13:24 INFO  web[][o.s.s.p.LogServerVersion] SonarQube Server / 9.7.1.62043 / 13c69ab992096c497badccbdb4a31110594574fd
+2023.11.28 22:13:25 WARN  web[][o.s.c.a.AnnotationConfigApplicationContext] Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'jdk.internal.loader.ClassLoaders$AppClassLoader@5c29bfd-org.sonar.server.platform.db.EmbeddedDatabaseFactory': Initialization of bean failed; nested exception is java.lang.IllegalStateException: Unable to start database
+2023.11.28 22:13:25 ERROR web[][o.s.s.p.PlatformImpl] Web server startup failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'jdk.internal.loader.ClassLoaders$AppClassLoader@5c29bfd-org.sonar.server.platform.db.EmbeddedDatabaseFactory': Initialization of bean failed; nested exception is java.lang.IllegalStateException: Unable to start database
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:628)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:955)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:918)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
+	at org.sonar.core.platform.SpringComponentContainer.startComponents(SpringComponentContainer.java:187)
+	at org.sonar.server.platform.platformlevel.PlatformLevel.start(PlatformLevel.java:80)
+	at org.sonar.server.platform.platformlevel.PlatformLevel1.start(PlatformLevel1.java:164)
+	at org.sonar.server.platform.PlatformImpl.start(PlatformImpl.java:196)
+	at org.sonar.server.platform.PlatformImpl.startLevel1Container(PlatformImpl.java:162)
+	at org.sonar.server.platform.PlatformImpl.init(PlatformImpl.java:76)
+	at org.sonar.server.platform.web.PlatformServletContextListener.contextInitialized(PlatformServletContextListener.java:43)
+	at org.apache.catalina.core.StandardContext.listenerStart(StandardContext.java:4768)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5230)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1396)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1386)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:140)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:919)
+	at org.apache.catalina.core.StandardHost.startInternal(StandardHost.java:835)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1396)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1386)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:140)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:919)
+	at org.apache.catalina.core.StandardEngine.startInternal(StandardEngine.java:263)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.StandardService.startInternal(StandardService.java:432)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.StandardServer.startInternal(StandardServer.java:927)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.startup.Tomcat.start(Tomcat.java:486)
+	at org.sonar.server.app.EmbeddedTomcat.start(EmbeddedTomcat.java:72)
+	at org.sonar.server.app.WebServer.start(WebServer.java:55)
+	at org.sonar.process.ProcessEntryPoint.launch(ProcessEntryPoint.java:97)
+	at org.sonar.process.ProcessEntryPoint.launch(ProcessEntryPoint.java:81)
+	at org.sonar.server.app.WebServer.main(WebServer.java:104)
+Caused by: java.lang.IllegalStateException: Unable to start database
+	at org.sonar.server.platform.db.EmbeddedDatabase.startServer(EmbeddedDatabase.java:88)
+	at org.sonar.server.platform.db.EmbeddedDatabase.start(EmbeddedDatabase.java:63)
+	at org.sonar.server.platform.db.EmbeddedDatabaseFactory.start(EmbeddedDatabaseFactory.java:49)
+	at org.sonar.core.platform.StartableBeanPostProcessor.postProcessBeforeInitialization(StartableBeanPostProcessor.java:33)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyBeanPostProcessorsBeforeInitialization(AbstractAutowireCapableBeanFactory.java:440)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1796)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620)
+	... 44 common frames omitted
+Caused by: org.h2.jdbc.JdbcSQLInvalidAuthorizationSpecException: Wrong user name or password [28000-214]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:510)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.message.DbException.get(DbException.java:188)
+	at org.h2.engine.Engine.validateUserAndPassword(Engine.java:393)
+	at org.h2.engine.Engine.createSession(Engine.java:206)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:338)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:122)
+	at org.h2.Driver.connect(Driver.java:59)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:677)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:251)
+	at org.sonar.server.platform.db.EmbeddedDatabase.createDatabase(EmbeddedDatabase.java:115)
+	at org.sonar.server.platform.db.EmbeddedDatabase.startServer(EmbeddedDatabase.java:79)
+	... 50 common frames omitted
+2023.11.28 22:13:25 INFO  web[][o.s.s.a.EmbeddedTomcat] HTTP connector enabled on port 9000
+2023.11.28 22:13:25 INFO  web[][o.s.p.ProcessEntryPoint] Hard stopping process
+2023.11.28 22:13:37 INFO  web[][o.s.p.ProcessEntryPoint] Starting Web Server
+2023.11.28 22:13:38 INFO  web[][o.s.s.p.LogServerVersion] SonarQube Server / 9.7.1.62043 / 13c69ab992096c497badccbdb4a31110594574fd
+2023.11.28 22:13:40 WARN  web[][o.s.c.a.AnnotationConfigApplicationContext] Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'jdk.internal.loader.ClassLoaders$AppClassLoader@5c29bfd-org.sonar.server.platform.db.EmbeddedDatabaseFactory': Initialization of bean failed; nested exception is java.lang.IllegalStateException: Unable to start database
+2023.11.28 22:13:40 ERROR web[][o.s.s.p.PlatformImpl] Web server startup failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'jdk.internal.loader.ClassLoaders$AppClassLoader@5c29bfd-org.sonar.server.platform.db.EmbeddedDatabaseFactory': Initialization of bean failed; nested exception is java.lang.IllegalStateException: Unable to start database
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:628)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:955)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:918)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
+	at org.sonar.core.platform.SpringComponentContainer.startComponents(SpringComponentContainer.java:187)
+	at org.sonar.server.platform.platformlevel.PlatformLevel.start(PlatformLevel.java:80)
+	at org.sonar.server.platform.platformlevel.PlatformLevel1.start(PlatformLevel1.java:164)
+	at org.sonar.server.platform.PlatformImpl.start(PlatformImpl.java:196)
+	at org.sonar.server.platform.PlatformImpl.startLevel1Container(PlatformImpl.java:162)
+	at org.sonar.server.platform.PlatformImpl.init(PlatformImpl.java:76)
+	at org.sonar.server.platform.web.PlatformServletContextListener.contextInitialized(PlatformServletContextListener.java:43)
+	at org.apache.catalina.core.StandardContext.listenerStart(StandardContext.java:4768)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5230)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1396)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1386)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:140)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:919)
+	at org.apache.catalina.core.StandardHost.startInternal(StandardHost.java:835)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1396)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1386)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:140)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:919)
+	at org.apache.catalina.core.StandardEngine.startInternal(StandardEngine.java:263)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.StandardService.startInternal(StandardService.java:432)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.StandardServer.startInternal(StandardServer.java:927)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.startup.Tomcat.start(Tomcat.java:486)
+	at org.sonar.server.app.EmbeddedTomcat.start(EmbeddedTomcat.java:72)
+	at org.sonar.server.app.WebServer.start(WebServer.java:55)
+	at org.sonar.process.ProcessEntryPoint.launch(ProcessEntryPoint.java:97)
+	at org.sonar.process.ProcessEntryPoint.launch(ProcessEntryPoint.java:81)
+	at org.sonar.server.app.WebServer.main(WebServer.java:104)
+Caused by: java.lang.IllegalStateException: Unable to start database
+	at org.sonar.server.platform.db.EmbeddedDatabase.startServer(EmbeddedDatabase.java:88)
+	at org.sonar.server.platform.db.EmbeddedDatabase.start(EmbeddedDatabase.java:63)
+	at org.sonar.server.platform.db.EmbeddedDatabaseFactory.start(EmbeddedDatabaseFactory.java:49)
+	at org.sonar.core.platform.StartableBeanPostProcessor.postProcessBeforeInitialization(StartableBeanPostProcessor.java:33)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyBeanPostProcessorsBeforeInitialization(AbstractAutowireCapableBeanFactory.java:440)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1796)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620)
+	... 44 common frames omitted
+Caused by: org.h2.jdbc.JdbcSQLInvalidAuthorizationSpecException: Wrong user name or password [28000-214]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:510)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.message.DbException.get(DbException.java:188)
+	at org.h2.engine.Engine.validateUserAndPassword(Engine.java:393)
+	at org.h2.engine.Engine.createSession(Engine.java:206)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:338)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:122)
+	at org.h2.Driver.connect(Driver.java:59)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:677)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:251)
+	at org.sonar.server.platform.db.EmbeddedDatabase.createDatabase(EmbeddedDatabase.java:115)
+	at org.sonar.server.platform.db.EmbeddedDatabase.startServer(EmbeddedDatabase.java:79)
+	... 50 common frames omitted
+2023.11.28 22:13:40 INFO  web[][o.s.s.a.EmbeddedTomcat] HTTP connector enabled on port 9000
+2023.11.28 22:13:40 INFO  web[][o.s.p.ProcessEntryPoint] Hard stopping process
+2023.11.28 22:13:51 INFO  web[][o.s.p.ProcessEntryPoint] Starting Web Server
+2023.11.28 22:13:52 INFO  web[][o.s.s.p.LogServerVersion] SonarQube Server / 9.7.1.62043 / 13c69ab992096c497badccbdb4a31110594574fd
+2023.11.28 22:13:54 WARN  web[][o.s.c.a.AnnotationConfigApplicationContext] Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'jdk.internal.loader.ClassLoaders$AppClassLoader@5c29bfd-org.sonar.server.platform.db.EmbeddedDatabaseFactory': Initialization of bean failed; nested exception is java.lang.IllegalStateException: Unable to start database
+2023.11.28 22:13:54 ERROR web[][o.s.s.p.PlatformImpl] Web server startup failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'jdk.internal.loader.ClassLoaders$AppClassLoader@5c29bfd-org.sonar.server.platform.db.EmbeddedDatabaseFactory': Initialization of bean failed; nested exception is java.lang.IllegalStateException: Unable to start database
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:628)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:955)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:918)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
+	at org.sonar.core.platform.SpringComponentContainer.startComponents(SpringComponentContainer.java:187)
+	at org.sonar.server.platform.platformlevel.PlatformLevel.start(PlatformLevel.java:80)
+	at org.sonar.server.platform.platformlevel.PlatformLevel1.start(PlatformLevel1.java:164)
+	at org.sonar.server.platform.PlatformImpl.start(PlatformImpl.java:196)
+	at org.sonar.server.platform.PlatformImpl.startLevel1Container(PlatformImpl.java:162)
+	at org.sonar.server.platform.PlatformImpl.init(PlatformImpl.java:76)
+	at org.sonar.server.platform.web.PlatformServletContextListener.contextInitialized(PlatformServletContextListener.java:43)
+	at org.apache.catalina.core.StandardContext.listenerStart(StandardContext.java:4768)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5230)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1396)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1386)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:140)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:919)
+	at org.apache.catalina.core.StandardHost.startInternal(StandardHost.java:835)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1396)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1386)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:140)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:919)
+	at org.apache.catalina.core.StandardEngine.startInternal(StandardEngine.java:263)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.StandardService.startInternal(StandardService.java:432)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.StandardServer.startInternal(StandardServer.java:927)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.startup.Tomcat.start(Tomcat.java:486)
+	at org.sonar.server.app.EmbeddedTomcat.start(EmbeddedTomcat.java:72)
+	at org.sonar.server.app.WebServer.start(WebServer.java:55)
+	at org.sonar.process.ProcessEntryPoint.launch(ProcessEntryPoint.java:97)
+	at org.sonar.process.ProcessEntryPoint.launch(ProcessEntryPoint.java:81)
+	at org.sonar.server.app.WebServer.main(WebServer.java:104)
+Caused by: java.lang.IllegalStateException: Unable to start database
+	at org.sonar.server.platform.db.EmbeddedDatabase.startServer(EmbeddedDatabase.java:88)
+	at org.sonar.server.platform.db.EmbeddedDatabase.start(EmbeddedDatabase.java:63)
+	at org.sonar.server.platform.db.EmbeddedDatabaseFactory.start(EmbeddedDatabaseFactory.java:49)
+	at org.sonar.core.platform.StartableBeanPostProcessor.postProcessBeforeInitialization(StartableBeanPostProcessor.java:33)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyBeanPostProcessorsBeforeInitialization(AbstractAutowireCapableBeanFactory.java:440)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1796)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620)
+	... 44 common frames omitted
+Caused by: org.h2.jdbc.JdbcSQLInvalidAuthorizationSpecException: Wrong user name or password [28000-214]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:510)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.message.DbException.get(DbException.java:188)
+	at org.h2.engine.Engine.validateUserAndPassword(Engine.java:393)
+	at org.h2.engine.Engine.createSession(Engine.java:206)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:338)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:122)
+	at org.h2.Driver.connect(Driver.java:59)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:677)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:251)
+	at org.sonar.server.platform.db.EmbeddedDatabase.createDatabase(EmbeddedDatabase.java:115)
+	at org.sonar.server.platform.db.EmbeddedDatabase.startServer(EmbeddedDatabase.java:79)
+	... 50 common frames omitted
+2023.11.28 22:13:54 INFO  web[][o.s.s.a.EmbeddedTomcat] HTTP connector enabled on port 9000
+2023.11.28 22:13:54 INFO  web[][o.s.p.ProcessEntryPoint] Hard stopping process
+2023.11.28 22:14:05 INFO  web[][o.s.p.ProcessEntryPoint] Starting Web Server
+2023.11.28 22:14:06 INFO  web[][o.s.s.p.LogServerVersion] SonarQube Server / 9.7.1.62043 / 13c69ab992096c497badccbdb4a31110594574fd
+2023.11.28 22:14:08 WARN  web[][o.s.c.a.AnnotationConfigApplicationContext] Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'jdk.internal.loader.ClassLoaders$AppClassLoader@5c29bfd-org.sonar.server.platform.db.EmbeddedDatabaseFactory': Initialization of bean failed; nested exception is java.lang.IllegalStateException: Unable to start database
+2023.11.28 22:14:08 ERROR web[][o.s.s.p.PlatformImpl] Web server startup failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'jdk.internal.loader.ClassLoaders$AppClassLoader@5c29bfd-org.sonar.server.platform.db.EmbeddedDatabaseFactory': Initialization of bean failed; nested exception is java.lang.IllegalStateException: Unable to start database
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:628)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:955)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:918)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
+	at org.sonar.core.platform.SpringComponentContainer.startComponents(SpringComponentContainer.java:187)
+	at org.sonar.server.platform.platformlevel.PlatformLevel.start(PlatformLevel.java:80)
+	at org.sonar.server.platform.platformlevel.PlatformLevel1.start(PlatformLevel1.java:164)
+	at org.sonar.server.platform.PlatformImpl.start(PlatformImpl.java:196)
+	at org.sonar.server.platform.PlatformImpl.startLevel1Container(PlatformImpl.java:162)
+	at org.sonar.server.platform.PlatformImpl.init(PlatformImpl.java:76)
+	at org.sonar.server.platform.web.PlatformServletContextListener.contextInitialized(PlatformServletContextListener.java:43)
+	at org.apache.catalina.core.StandardContext.listenerStart(StandardContext.java:4768)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5230)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1396)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1386)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:140)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:919)
+	at org.apache.catalina.core.StandardHost.startInternal(StandardHost.java:835)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1396)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1386)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:140)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:919)
+	at org.apache.catalina.core.StandardEngine.startInternal(StandardEngine.java:263)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.StandardService.startInternal(StandardService.java:432)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.StandardServer.startInternal(StandardServer.java:927)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.startup.Tomcat.start(Tomcat.java:486)
+	at org.sonar.server.app.EmbeddedTomcat.start(EmbeddedTomcat.java:72)
+	at org.sonar.server.app.WebServer.start(WebServer.java:55)
+	at org.sonar.process.ProcessEntryPoint.launch(ProcessEntryPoint.java:97)
+	at org.sonar.process.ProcessEntryPoint.launch(ProcessEntryPoint.java:81)
+	at org.sonar.server.app.WebServer.main(WebServer.java:104)
+Caused by: java.lang.IllegalStateException: Unable to start database
+	at org.sonar.server.platform.db.EmbeddedDatabase.startServer(EmbeddedDatabase.java:88)
+	at org.sonar.server.platform.db.EmbeddedDatabase.start(EmbeddedDatabase.java:63)
+	at org.sonar.server.platform.db.EmbeddedDatabaseFactory.start(EmbeddedDatabaseFactory.java:49)
+	at org.sonar.core.platform.StartableBeanPostProcessor.postProcessBeforeInitialization(StartableBeanPostProcessor.java:33)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyBeanPostProcessorsBeforeInitialization(AbstractAutowireCapableBeanFactory.java:440)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1796)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620)
+	... 44 common frames omitted
+Caused by: org.h2.jdbc.JdbcSQLInvalidAuthorizationSpecException: Wrong user name or password [28000-214]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:510)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.message.DbException.get(DbException.java:188)
+	at org.h2.engine.Engine.validateUserAndPassword(Engine.java:393)
+	at org.h2.engine.Engine.createSession(Engine.java:206)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:338)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:122)
+	at org.h2.Driver.connect(Driver.java:59)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:677)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:251)
+	at org.sonar.server.platform.db.EmbeddedDatabase.createDatabase(EmbeddedDatabase.java:115)
+	at org.sonar.server.platform.db.EmbeddedDatabase.startServer(EmbeddedDatabase.java:79)
+	... 50 common frames omitted
+2023.11.28 22:14:08 INFO  web[][o.s.s.a.EmbeddedTomcat] HTTP connector enabled on port 9000
+2023.11.28 22:14:08 INFO  web[][o.s.p.ProcessEntryPoint] Hard stopping process
+2023.11.28 22:14:19 INFO  web[][o.s.p.ProcessEntryPoint] Starting Web Server
+2023.11.28 22:14:20 INFO  web[][o.s.s.p.LogServerVersion] SonarQube Server / 9.7.1.62043 / 13c69ab992096c497badccbdb4a31110594574fd
+2023.11.28 22:14:21 WARN  web[][o.s.c.a.AnnotationConfigApplicationContext] Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'jdk.internal.loader.ClassLoaders$AppClassLoader@5c29bfd-org.sonar.server.platform.db.EmbeddedDatabaseFactory': Initialization of bean failed; nested exception is java.lang.IllegalStateException: Unable to start database
+2023.11.28 22:14:21 ERROR web[][o.s.s.p.PlatformImpl] Web server startup failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'jdk.internal.loader.ClassLoaders$AppClassLoader@5c29bfd-org.sonar.server.platform.db.EmbeddedDatabaseFactory': Initialization of bean failed; nested exception is java.lang.IllegalStateException: Unable to start database
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:628)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:955)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:918)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
+	at org.sonar.core.platform.SpringComponentContainer.startComponents(SpringComponentContainer.java:187)
+	at org.sonar.server.platform.platformlevel.PlatformLevel.start(PlatformLevel.java:80)
+	at org.sonar.server.platform.platformlevel.PlatformLevel1.start(PlatformLevel1.java:164)
+	at org.sonar.server.platform.PlatformImpl.start(PlatformImpl.java:196)
+	at org.sonar.server.platform.PlatformImpl.startLevel1Container(PlatformImpl.java:162)
+	at org.sonar.server.platform.PlatformImpl.init(PlatformImpl.java:76)
+	at org.sonar.server.platform.web.PlatformServletContextListener.contextInitialized(PlatformServletContextListener.java:43)
+	at org.apache.catalina.core.StandardContext.listenerStart(StandardContext.java:4768)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5230)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1396)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1386)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:140)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:919)
+	at org.apache.catalina.core.StandardHost.startInternal(StandardHost.java:835)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1396)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1386)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:140)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:919)
+	at org.apache.catalina.core.StandardEngine.startInternal(StandardEngine.java:263)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.StandardService.startInternal(StandardService.java:432)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.StandardServer.startInternal(StandardServer.java:927)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.startup.Tomcat.start(Tomcat.java:486)
+	at org.sonar.server.app.EmbeddedTomcat.start(EmbeddedTomcat.java:72)
+	at org.sonar.server.app.WebServer.start(WebServer.java:55)
+	at org.sonar.process.ProcessEntryPoint.launch(ProcessEntryPoint.java:97)
+	at org.sonar.process.ProcessEntryPoint.launch(ProcessEntryPoint.java:81)
+	at org.sonar.server.app.WebServer.main(WebServer.java:104)
+Caused by: java.lang.IllegalStateException: Unable to start database
+	at org.sonar.server.platform.db.EmbeddedDatabase.startServer(EmbeddedDatabase.java:88)
+	at org.sonar.server.platform.db.EmbeddedDatabase.start(EmbeddedDatabase.java:63)
+	at org.sonar.server.platform.db.EmbeddedDatabaseFactory.start(EmbeddedDatabaseFactory.java:49)
+	at org.sonar.core.platform.StartableBeanPostProcessor.postProcessBeforeInitialization(StartableBeanPostProcessor.java:33)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyBeanPostProcessorsBeforeInitialization(AbstractAutowireCapableBeanFactory.java:440)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1796)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620)
+	... 44 common frames omitted
+Caused by: org.h2.jdbc.JdbcSQLInvalidAuthorizationSpecException: Wrong user name or password [28000-214]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:510)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.message.DbException.get(DbException.java:188)
+	at org.h2.engine.Engine.validateUserAndPassword(Engine.java:393)
+	at org.h2.engine.Engine.createSession(Engine.java:206)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:338)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:122)
+	at org.h2.Driver.connect(Driver.java:59)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:677)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:251)
+	at org.sonar.server.platform.db.EmbeddedDatabase.createDatabase(EmbeddedDatabase.java:115)
+	at org.sonar.server.platform.db.EmbeddedDatabase.startServer(EmbeddedDatabase.java:79)
+	... 50 common frames omitted
+2023.11.28 22:14:21 INFO  web[][o.s.s.a.EmbeddedTomcat] HTTP connector enabled on port 9000
+2023.11.28 22:14:21 INFO  web[][o.s.p.ProcessEntryPoint] Hard stopping process
+2023.11.28 22:14:33 INFO  web[][o.s.p.ProcessEntryPoint] Starting Web Server
+2023.11.28 22:14:34 INFO  web[][o.s.s.p.LogServerVersion] SonarQube Server / 9.7.1.62043 / 13c69ab992096c497badccbdb4a31110594574fd
+2023.11.28 22:14:35 WARN  web[][o.s.c.a.AnnotationConfigApplicationContext] Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'jdk.internal.loader.ClassLoaders$AppClassLoader@5c29bfd-org.sonar.server.platform.db.EmbeddedDatabaseFactory': Initialization of bean failed; nested exception is java.lang.IllegalStateException: Unable to start database
+2023.11.28 22:14:35 ERROR web[][o.s.s.p.PlatformImpl] Web server startup failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'jdk.internal.loader.ClassLoaders$AppClassLoader@5c29bfd-org.sonar.server.platform.db.EmbeddedDatabaseFactory': Initialization of bean failed; nested exception is java.lang.IllegalStateException: Unable to start database
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:628)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:955)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:918)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
+	at org.sonar.core.platform.SpringComponentContainer.startComponents(SpringComponentContainer.java:187)
+	at org.sonar.server.platform.platformlevel.PlatformLevel.start(PlatformLevel.java:80)
+	at org.sonar.server.platform.platformlevel.PlatformLevel1.start(PlatformLevel1.java:164)
+	at org.sonar.server.platform.PlatformImpl.start(PlatformImpl.java:196)
+	at org.sonar.server.platform.PlatformImpl.startLevel1Container(PlatformImpl.java:162)
+	at org.sonar.server.platform.PlatformImpl.init(PlatformImpl.java:76)
+	at org.sonar.server.platform.web.PlatformServletContextListener.contextInitialized(PlatformServletContextListener.java:43)
+	at org.apache.catalina.core.StandardContext.listenerStart(StandardContext.java:4768)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5230)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1396)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1386)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:140)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:919)
+	at org.apache.catalina.core.StandardHost.startInternal(StandardHost.java:835)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1396)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1386)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:140)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:919)
+	at org.apache.catalina.core.StandardEngine.startInternal(StandardEngine.java:263)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.StandardService.startInternal(StandardService.java:432)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.StandardServer.startInternal(StandardServer.java:927)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.startup.Tomcat.start(Tomcat.java:486)
+	at org.sonar.server.app.EmbeddedTomcat.start(EmbeddedTomcat.java:72)
+	at org.sonar.server.app.WebServer.start(WebServer.java:55)
+	at org.sonar.process.ProcessEntryPoint.launch(ProcessEntryPoint.java:97)
+	at org.sonar.process.ProcessEntryPoint.launch(ProcessEntryPoint.java:81)
+	at org.sonar.server.app.WebServer.main(WebServer.java:104)
+Caused by: java.lang.IllegalStateException: Unable to start database
+	at org.sonar.server.platform.db.EmbeddedDatabase.startServer(EmbeddedDatabase.java:88)
+	at org.sonar.server.platform.db.EmbeddedDatabase.start(EmbeddedDatabase.java:63)
+	at org.sonar.server.platform.db.EmbeddedDatabaseFactory.start(EmbeddedDatabaseFactory.java:49)
+	at org.sonar.core.platform.StartableBeanPostProcessor.postProcessBeforeInitialization(StartableBeanPostProcessor.java:33)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyBeanPostProcessorsBeforeInitialization(AbstractAutowireCapableBeanFactory.java:440)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1796)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620)
+	... 44 common frames omitted
+Caused by: org.h2.jdbc.JdbcSQLInvalidAuthorizationSpecException: Wrong user name or password [28000-214]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:510)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.message.DbException.get(DbException.java:188)
+	at org.h2.engine.Engine.validateUserAndPassword(Engine.java:393)
+	at org.h2.engine.Engine.createSession(Engine.java:206)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:338)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:122)
+	at org.h2.Driver.connect(Driver.java:59)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:677)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:251)
+	at org.sonar.server.platform.db.EmbeddedDatabase.createDatabase(EmbeddedDatabase.java:115)
+	at org.sonar.server.platform.db.EmbeddedDatabase.startServer(EmbeddedDatabase.java:79)
+	... 50 common frames omitted
+2023.11.28 22:14:36 INFO  web[][o.s.s.a.EmbeddedTomcat] HTTP connector enabled on port 9000
+2023.11.28 22:14:36 INFO  web[][o.s.p.ProcessEntryPoint] Hard stopping process
+2023.11.28 22:14:47 INFO  web[][o.s.p.ProcessEntryPoint] Starting Web Server
+2023.11.28 22:14:48 INFO  web[][o.s.s.p.LogServerVersion] SonarQube Server / 9.7.1.62043 / 13c69ab992096c497badccbdb4a31110594574fd
+2023.11.28 22:14:49 WARN  web[][o.s.c.a.AnnotationConfigApplicationContext] Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'jdk.internal.loader.ClassLoaders$AppClassLoader@5c29bfd-org.sonar.server.platform.db.EmbeddedDatabaseFactory': Initialization of bean failed; nested exception is java.lang.IllegalStateException: Unable to start database
+2023.11.28 22:14:49 ERROR web[][o.s.s.p.PlatformImpl] Web server startup failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'jdk.internal.loader.ClassLoaders$AppClassLoader@5c29bfd-org.sonar.server.platform.db.EmbeddedDatabaseFactory': Initialization of bean failed; nested exception is java.lang.IllegalStateException: Unable to start database
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:628)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:955)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:918)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
+	at org.sonar.core.platform.SpringComponentContainer.startComponents(SpringComponentContainer.java:187)
+	at org.sonar.server.platform.platformlevel.PlatformLevel.start(PlatformLevel.java:80)
+	at org.sonar.server.platform.platformlevel.PlatformLevel1.start(PlatformLevel1.java:164)
+	at org.sonar.server.platform.PlatformImpl.start(PlatformImpl.java:196)
+	at org.sonar.server.platform.PlatformImpl.startLevel1Container(PlatformImpl.java:162)
+	at org.sonar.server.platform.PlatformImpl.init(PlatformImpl.java:76)
+	at org.sonar.server.platform.web.PlatformServletContextListener.contextInitialized(PlatformServletContextListener.java:43)
+	at org.apache.catalina.core.StandardContext.listenerStart(StandardContext.java:4768)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5230)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1396)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1386)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:140)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:919)
+	at org.apache.catalina.core.StandardHost.startInternal(StandardHost.java:835)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1396)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1386)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:140)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:919)
+	at org.apache.catalina.core.StandardEngine.startInternal(StandardEngine.java:263)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.StandardService.startInternal(StandardService.java:432)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.StandardServer.startInternal(StandardServer.java:927)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.startup.Tomcat.start(Tomcat.java:486)
+	at org.sonar.server.app.EmbeddedTomcat.start(EmbeddedTomcat.java:72)
+	at org.sonar.server.app.WebServer.start(WebServer.java:55)
+	at org.sonar.process.ProcessEntryPoint.launch(ProcessEntryPoint.java:97)
+	at org.sonar.process.ProcessEntryPoint.launch(ProcessEntryPoint.java:81)
+	at org.sonar.server.app.WebServer.main(WebServer.java:104)
+Caused by: java.lang.IllegalStateException: Unable to start database
+	at org.sonar.server.platform.db.EmbeddedDatabase.startServer(EmbeddedDatabase.java:88)
+	at org.sonar.server.platform.db.EmbeddedDatabase.start(EmbeddedDatabase.java:63)
+	at org.sonar.server.platform.db.EmbeddedDatabaseFactory.start(EmbeddedDatabaseFactory.java:49)
+	at org.sonar.core.platform.StartableBeanPostProcessor.postProcessBeforeInitialization(StartableBeanPostProcessor.java:33)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyBeanPostProcessorsBeforeInitialization(AbstractAutowireCapableBeanFactory.java:440)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1796)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620)
+	... 44 common frames omitted
+Caused by: org.h2.jdbc.JdbcSQLInvalidAuthorizationSpecException: Wrong user name or password [28000-214]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:510)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.message.DbException.get(DbException.java:188)
+	at org.h2.engine.Engine.validateUserAndPassword(Engine.java:393)
+	at org.h2.engine.Engine.createSession(Engine.java:206)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:338)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:122)
+	at org.h2.Driver.connect(Driver.java:59)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:677)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:251)
+	at org.sonar.server.platform.db.EmbeddedDatabase.createDatabase(EmbeddedDatabase.java:115)
+	at org.sonar.server.platform.db.EmbeddedDatabase.startServer(EmbeddedDatabase.java:79)
+	... 50 common frames omitted
+2023.11.28 22:14:49 INFO  web[][o.s.s.a.EmbeddedTomcat] HTTP connector enabled on port 9000
+2023.11.28 22:14:49 INFO  web[][o.s.p.ProcessEntryPoint] Hard stopping process
+2023.11.28 22:15:03 INFO  web[][o.s.p.ProcessEntryPoint] Starting Web Server
+2023.11.28 22:15:04 INFO  web[][o.s.s.p.LogServerVersion] SonarQube Server / 9.7.1.62043 / 13c69ab992096c497badccbdb4a31110594574fd
+2023.11.28 22:15:06 WARN  web[][o.s.c.a.AnnotationConfigApplicationContext] Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'jdk.internal.loader.ClassLoaders$AppClassLoader@5c29bfd-org.sonar.server.platform.db.EmbeddedDatabaseFactory': Initialization of bean failed; nested exception is java.lang.IllegalStateException: Unable to start database
+2023.11.28 22:15:06 ERROR web[][o.s.s.p.PlatformImpl] Web server startup failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'jdk.internal.loader.ClassLoaders$AppClassLoader@5c29bfd-org.sonar.server.platform.db.EmbeddedDatabaseFactory': Initialization of bean failed; nested exception is java.lang.IllegalStateException: Unable to start database
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:628)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:955)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:918)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
+	at org.sonar.core.platform.SpringComponentContainer.startComponents(SpringComponentContainer.java:187)
+	at org.sonar.server.platform.platformlevel.PlatformLevel.start(PlatformLevel.java:80)
+	at org.sonar.server.platform.platformlevel.PlatformLevel1.start(PlatformLevel1.java:164)
+	at org.sonar.server.platform.PlatformImpl.start(PlatformImpl.java:196)
+	at org.sonar.server.platform.PlatformImpl.startLevel1Container(PlatformImpl.java:162)
+	at org.sonar.server.platform.PlatformImpl.init(PlatformImpl.java:76)
+	at org.sonar.server.platform.web.PlatformServletContextListener.contextInitialized(PlatformServletContextListener.java:43)
+	at org.apache.catalina.core.StandardContext.listenerStart(StandardContext.java:4768)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5230)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1396)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1386)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:140)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:919)
+	at org.apache.catalina.core.StandardHost.startInternal(StandardHost.java:835)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1396)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1386)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:140)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:919)
+	at org.apache.catalina.core.StandardEngine.startInternal(StandardEngine.java:263)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.StandardService.startInternal(StandardService.java:432)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.StandardServer.startInternal(StandardServer.java:927)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.startup.Tomcat.start(Tomcat.java:486)
+	at org.sonar.server.app.EmbeddedTomcat.start(EmbeddedTomcat.java:72)
+	at org.sonar.server.app.WebServer.start(WebServer.java:55)
+	at org.sonar.process.ProcessEntryPoint.launch(ProcessEntryPoint.java:97)
+	at org.sonar.process.ProcessEntryPoint.launch(ProcessEntryPoint.java:81)
+	at org.sonar.server.app.WebServer.main(WebServer.java:104)
+Caused by: java.lang.IllegalStateException: Unable to start database
+	at org.sonar.server.platform.db.EmbeddedDatabase.startServer(EmbeddedDatabase.java:88)
+	at org.sonar.server.platform.db.EmbeddedDatabase.start(EmbeddedDatabase.java:63)
+	at org.sonar.server.platform.db.EmbeddedDatabaseFactory.start(EmbeddedDatabaseFactory.java:49)
+	at org.sonar.core.platform.StartableBeanPostProcessor.postProcessBeforeInitialization(StartableBeanPostProcessor.java:33)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyBeanPostProcessorsBeforeInitialization(AbstractAutowireCapableBeanFactory.java:440)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1796)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620)
+	... 44 common frames omitted
+Caused by: org.h2.jdbc.JdbcSQLInvalidAuthorizationSpecException: Wrong user name or password [28000-214]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:510)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.message.DbException.get(DbException.java:188)
+	at org.h2.engine.Engine.validateUserAndPassword(Engine.java:393)
+	at org.h2.engine.Engine.createSession(Engine.java:206)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:338)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:122)
+	at org.h2.Driver.connect(Driver.java:59)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:677)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:251)
+	at org.sonar.server.platform.db.EmbeddedDatabase.createDatabase(EmbeddedDatabase.java:115)
+	at org.sonar.server.platform.db.EmbeddedDatabase.startServer(EmbeddedDatabase.java:79)
+	... 50 common frames omitted
+2023.11.28 22:15:06 INFO  web[][o.s.s.a.EmbeddedTomcat] HTTP connector enabled on port 9000
+2023.11.28 22:15:06 INFO  web[][o.s.p.ProcessEntryPoint] Hard stopping process
+2023.11.28 22:15:18 INFO  web[][o.s.p.ProcessEntryPoint] Starting Web Server
+2023.11.28 22:15:19 INFO  web[][o.s.s.p.LogServerVersion] SonarQube Server / 9.7.1.62043 / 13c69ab992096c497badccbdb4a31110594574fd
+2023.11.28 22:15:21 WARN  web[][o.s.c.a.AnnotationConfigApplicationContext] Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'jdk.internal.loader.ClassLoaders$AppClassLoader@277050dc-org.sonar.server.platform.db.EmbeddedDatabaseFactory': Initialization of bean failed; nested exception is java.lang.IllegalStateException: Unable to start database
+2023.11.28 22:15:21 ERROR web[][o.s.s.p.PlatformImpl] Web server startup failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'jdk.internal.loader.ClassLoaders$AppClassLoader@277050dc-org.sonar.server.platform.db.EmbeddedDatabaseFactory': Initialization of bean failed; nested exception is java.lang.IllegalStateException: Unable to start database
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:628)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:955)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:918)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
+	at org.sonar.core.platform.SpringComponentContainer.startComponents(SpringComponentContainer.java:187)
+	at org.sonar.server.platform.platformlevel.PlatformLevel.start(PlatformLevel.java:80)
+	at org.sonar.server.platform.platformlevel.PlatformLevel1.start(PlatformLevel1.java:164)
+	at org.sonar.server.platform.PlatformImpl.start(PlatformImpl.java:196)
+	at org.sonar.server.platform.PlatformImpl.startLevel1Container(PlatformImpl.java:162)
+	at org.sonar.server.platform.PlatformImpl.init(PlatformImpl.java:76)
+	at org.sonar.server.platform.web.PlatformServletContextListener.contextInitialized(PlatformServletContextListener.java:43)
+	at org.apache.catalina.core.StandardContext.listenerStart(StandardContext.java:4768)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5230)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1396)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1386)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:140)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:919)
+	at org.apache.catalina.core.StandardHost.startInternal(StandardHost.java:835)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1396)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1386)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:140)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:919)
+	at org.apache.catalina.core.StandardEngine.startInternal(StandardEngine.java:263)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.StandardService.startInternal(StandardService.java:432)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.StandardServer.startInternal(StandardServer.java:927)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.startup.Tomcat.start(Tomcat.java:486)
+	at org.sonar.server.app.EmbeddedTomcat.start(EmbeddedTomcat.java:72)
+	at org.sonar.server.app.WebServer.start(WebServer.java:55)
+	at org.sonar.process.ProcessEntryPoint.launch(ProcessEntryPoint.java:97)
+	at org.sonar.process.ProcessEntryPoint.launch(ProcessEntryPoint.java:81)
+	at org.sonar.server.app.WebServer.main(WebServer.java:104)
+Caused by: java.lang.IllegalStateException: Unable to start database
+	at org.sonar.server.platform.db.EmbeddedDatabase.startServer(EmbeddedDatabase.java:88)
+	at org.sonar.server.platform.db.EmbeddedDatabase.start(EmbeddedDatabase.java:63)
+	at org.sonar.server.platform.db.EmbeddedDatabaseFactory.start(EmbeddedDatabaseFactory.java:49)
+	at org.sonar.core.platform.StartableBeanPostProcessor.postProcessBeforeInitialization(StartableBeanPostProcessor.java:33)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyBeanPostProcessorsBeforeInitialization(AbstractAutowireCapableBeanFactory.java:440)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1796)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620)
+	... 44 common frames omitted
+Caused by: org.h2.jdbc.JdbcSQLInvalidAuthorizationSpecException: Wrong user name or password [28000-214]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:510)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.message.DbException.get(DbException.java:188)
+	at org.h2.engine.Engine.validateUserAndPassword(Engine.java:393)
+	at org.h2.engine.Engine.createSession(Engine.java:206)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:338)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:122)
+	at org.h2.Driver.connect(Driver.java:59)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:677)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:251)
+	at org.sonar.server.platform.db.EmbeddedDatabase.createDatabase(EmbeddedDatabase.java:115)
+	at org.sonar.server.platform.db.EmbeddedDatabase.startServer(EmbeddedDatabase.java:79)
+	... 50 common frames omitted
+2023.11.28 22:15:21 INFO  web[][o.s.s.a.EmbeddedTomcat] HTTP connector enabled on port 9000
+2023.11.28 22:15:21 INFO  web[][o.s.p.ProcessEntryPoint] Hard stopping process
+2023.11.28 22:15:32 INFO  web[][o.s.p.ProcessEntryPoint] Starting Web Server
+2023.11.28 22:15:33 INFO  web[][o.s.s.p.LogServerVersion] SonarQube Server / 9.7.1.62043 / 13c69ab992096c497badccbdb4a31110594574fd
+2023.11.28 22:15:35 WARN  web[][o.s.c.a.AnnotationConfigApplicationContext] Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'jdk.internal.loader.ClassLoaders$AppClassLoader@277050dc-org.sonar.server.platform.db.EmbeddedDatabaseFactory': Initialization of bean failed; nested exception is java.lang.IllegalStateException: Unable to start database
+2023.11.28 22:15:35 ERROR web[][o.s.s.p.PlatformImpl] Web server startup failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'jdk.internal.loader.ClassLoaders$AppClassLoader@277050dc-org.sonar.server.platform.db.EmbeddedDatabaseFactory': Initialization of bean failed; nested exception is java.lang.IllegalStateException: Unable to start database
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:628)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:955)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:918)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
+	at org.sonar.core.platform.SpringComponentContainer.startComponents(SpringComponentContainer.java:187)
+	at org.sonar.server.platform.platformlevel.PlatformLevel.start(PlatformLevel.java:80)
+	at org.sonar.server.platform.platformlevel.PlatformLevel1.start(PlatformLevel1.java:164)
+	at org.sonar.server.platform.PlatformImpl.start(PlatformImpl.java:196)
+	at org.sonar.server.platform.PlatformImpl.startLevel1Container(PlatformImpl.java:162)
+	at org.sonar.server.platform.PlatformImpl.init(PlatformImpl.java:76)
+	at org.sonar.server.platform.web.PlatformServletContextListener.contextInitialized(PlatformServletContextListener.java:43)
+	at org.apache.catalina.core.StandardContext.listenerStart(StandardContext.java:4768)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5230)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1396)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1386)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:140)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:919)
+	at org.apache.catalina.core.StandardHost.startInternal(StandardHost.java:835)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1396)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1386)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:140)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:919)
+	at org.apache.catalina.core.StandardEngine.startInternal(StandardEngine.java:263)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.StandardService.startInternal(StandardService.java:432)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.StandardServer.startInternal(StandardServer.java:927)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.startup.Tomcat.start(Tomcat.java:486)
+	at org.sonar.server.app.EmbeddedTomcat.start(EmbeddedTomcat.java:72)
+	at org.sonar.server.app.WebServer.start(WebServer.java:55)
+	at org.sonar.process.ProcessEntryPoint.launch(ProcessEntryPoint.java:97)
+	at org.sonar.process.ProcessEntryPoint.launch(ProcessEntryPoint.java:81)
+	at org.sonar.server.app.WebServer.main(WebServer.java:104)
+Caused by: java.lang.IllegalStateException: Unable to start database
+	at org.sonar.server.platform.db.EmbeddedDatabase.startServer(EmbeddedDatabase.java:88)
+	at org.sonar.server.platform.db.EmbeddedDatabase.start(EmbeddedDatabase.java:63)
+	at org.sonar.server.platform.db.EmbeddedDatabaseFactory.start(EmbeddedDatabaseFactory.java:49)
+	at org.sonar.core.platform.StartableBeanPostProcessor.postProcessBeforeInitialization(StartableBeanPostProcessor.java:33)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyBeanPostProcessorsBeforeInitialization(AbstractAutowireCapableBeanFactory.java:440)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1796)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620)
+	... 44 common frames omitted
+Caused by: org.h2.jdbc.JdbcSQLInvalidAuthorizationSpecException: Wrong user name or password [28000-214]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:510)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.message.DbException.get(DbException.java:188)
+	at org.h2.engine.Engine.validateUserAndPassword(Engine.java:393)
+	at org.h2.engine.Engine.createSession(Engine.java:206)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:338)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:122)
+	at org.h2.Driver.connect(Driver.java:59)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:677)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:251)
+	at org.sonar.server.platform.db.EmbeddedDatabase.createDatabase(EmbeddedDatabase.java:115)
+	at org.sonar.server.platform.db.EmbeddedDatabase.startServer(EmbeddedDatabase.java:79)
+	... 50 common frames omitted
+2023.11.28 22:15:35 INFO  web[][o.s.s.a.EmbeddedTomcat] HTTP connector enabled on port 9000
+2023.11.28 22:15:35 INFO  web[][o.s.p.ProcessEntryPoint] Hard stopping process
+2023.11.28 22:15:46 INFO  web[][o.s.p.ProcessEntryPoint] Starting Web Server
+2023.11.28 22:15:47 INFO  web[][o.s.s.p.LogServerVersion] SonarQube Server / 9.7.1.62043 / 13c69ab992096c497badccbdb4a31110594574fd
+2023.11.28 22:15:49 WARN  web[][o.s.c.a.AnnotationConfigApplicationContext] Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'jdk.internal.loader.ClassLoaders$AppClassLoader@5c29bfd-org.sonar.server.platform.db.EmbeddedDatabaseFactory': Initialization of bean failed; nested exception is java.lang.IllegalStateException: Unable to start database
+2023.11.28 22:15:49 ERROR web[][o.s.s.p.PlatformImpl] Web server startup failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'jdk.internal.loader.ClassLoaders$AppClassLoader@5c29bfd-org.sonar.server.platform.db.EmbeddedDatabaseFactory': Initialization of bean failed; nested exception is java.lang.IllegalStateException: Unable to start database
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:628)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:955)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:918)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
+	at org.sonar.core.platform.SpringComponentContainer.startComponents(SpringComponentContainer.java:187)
+	at org.sonar.server.platform.platformlevel.PlatformLevel.start(PlatformLevel.java:80)
+	at org.sonar.server.platform.platformlevel.PlatformLevel1.start(PlatformLevel1.java:164)
+	at org.sonar.server.platform.PlatformImpl.start(PlatformImpl.java:196)
+	at org.sonar.server.platform.PlatformImpl.startLevel1Container(PlatformImpl.java:162)
+	at org.sonar.server.platform.PlatformImpl.init(PlatformImpl.java:76)
+	at org.sonar.server.platform.web.PlatformServletContextListener.contextInitialized(PlatformServletContextListener.java:43)
+	at org.apache.catalina.core.StandardContext.listenerStart(StandardContext.java:4768)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5230)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1396)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1386)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:140)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:919)
+	at org.apache.catalina.core.StandardHost.startInternal(StandardHost.java:835)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1396)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1386)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:140)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:919)
+	at org.apache.catalina.core.StandardEngine.startInternal(StandardEngine.java:263)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.StandardService.startInternal(StandardService.java:432)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.StandardServer.startInternal(StandardServer.java:927)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.startup.Tomcat.start(Tomcat.java:486)
+	at org.sonar.server.app.EmbeddedTomcat.start(EmbeddedTomcat.java:72)
+	at org.sonar.server.app.WebServer.start(WebServer.java:55)
+	at org.sonar.process.ProcessEntryPoint.launch(ProcessEntryPoint.java:97)
+	at org.sonar.process.ProcessEntryPoint.launch(ProcessEntryPoint.java:81)
+	at org.sonar.server.app.WebServer.main(WebServer.java:104)
+Caused by: java.lang.IllegalStateException: Unable to start database
+	at org.sonar.server.platform.db.EmbeddedDatabase.startServer(EmbeddedDatabase.java:88)
+	at org.sonar.server.platform.db.EmbeddedDatabase.start(EmbeddedDatabase.java:63)
+	at org.sonar.server.platform.db.EmbeddedDatabaseFactory.start(EmbeddedDatabaseFactory.java:49)
+	at org.sonar.core.platform.StartableBeanPostProcessor.postProcessBeforeInitialization(StartableBeanPostProcessor.java:33)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyBeanPostProcessorsBeforeInitialization(AbstractAutowireCapableBeanFactory.java:440)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1796)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620)
+	... 44 common frames omitted
+Caused by: org.h2.jdbc.JdbcSQLInvalidAuthorizationSpecException: Wrong user name or password [28000-214]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:510)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.message.DbException.get(DbException.java:188)
+	at org.h2.engine.Engine.validateUserAndPassword(Engine.java:393)
+	at org.h2.engine.Engine.createSession(Engine.java:206)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:338)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:122)
+	at org.h2.Driver.connect(Driver.java:59)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:677)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:251)
+	at org.sonar.server.platform.db.EmbeddedDatabase.createDatabase(EmbeddedDatabase.java:115)
+	at org.sonar.server.platform.db.EmbeddedDatabase.startServer(EmbeddedDatabase.java:79)
+	... 50 common frames omitted
+2023.11.28 22:15:49 INFO  web[][o.s.s.a.EmbeddedTomcat] HTTP connector enabled on port 9000
+2023.11.28 22:15:49 INFO  web[][o.s.p.ProcessEntryPoint] Hard stopping process
+2023.11.28 22:16:00 INFO  web[][o.s.p.ProcessEntryPoint] Starting Web Server
+2023.11.28 22:16:02 INFO  web[][o.s.s.p.LogServerVersion] SonarQube Server / 9.7.1.62043 / 13c69ab992096c497badccbdb4a31110594574fd
+2023.11.28 22:16:03 WARN  web[][o.s.c.a.AnnotationConfigApplicationContext] Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'jdk.internal.loader.ClassLoaders$AppClassLoader@5c29bfd-org.sonar.server.platform.db.EmbeddedDatabaseFactory': Initialization of bean failed; nested exception is java.lang.IllegalStateException: Unable to start database
+2023.11.28 22:16:03 ERROR web[][o.s.s.p.PlatformImpl] Web server startup failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'jdk.internal.loader.ClassLoaders$AppClassLoader@5c29bfd-org.sonar.server.platform.db.EmbeddedDatabaseFactory': Initialization of bean failed; nested exception is java.lang.IllegalStateException: Unable to start database
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:628)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:955)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:918)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
+	at org.sonar.core.platform.SpringComponentContainer.startComponents(SpringComponentContainer.java:187)
+	at org.sonar.server.platform.platformlevel.PlatformLevel.start(PlatformLevel.java:80)
+	at org.sonar.server.platform.platformlevel.PlatformLevel1.start(PlatformLevel1.java:164)
+	at org.sonar.server.platform.PlatformImpl.start(PlatformImpl.java:196)
+	at org.sonar.server.platform.PlatformImpl.startLevel1Container(PlatformImpl.java:162)
+	at org.sonar.server.platform.PlatformImpl.init(PlatformImpl.java:76)
+	at org.sonar.server.platform.web.PlatformServletContextListener.contextInitialized(PlatformServletContextListener.java:43)
+	at org.apache.catalina.core.StandardContext.listenerStart(StandardContext.java:4768)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5230)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1396)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1386)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:140)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:919)
+	at org.apache.catalina.core.StandardHost.startInternal(StandardHost.java:835)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1396)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1386)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:140)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:919)
+	at org.apache.catalina.core.StandardEngine.startInternal(StandardEngine.java:263)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.StandardService.startInternal(StandardService.java:432)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.StandardServer.startInternal(StandardServer.java:927)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.startup.Tomcat.start(Tomcat.java:486)
+	at org.sonar.server.app.EmbeddedTomcat.start(EmbeddedTomcat.java:72)
+	at org.sonar.server.app.WebServer.start(WebServer.java:55)
+	at org.sonar.process.ProcessEntryPoint.launch(ProcessEntryPoint.java:97)
+	at org.sonar.process.ProcessEntryPoint.launch(ProcessEntryPoint.java:81)
+	at org.sonar.server.app.WebServer.main(WebServer.java:104)
+Caused by: java.lang.IllegalStateException: Unable to start database
+	at org.sonar.server.platform.db.EmbeddedDatabase.startServer(EmbeddedDatabase.java:88)
+	at org.sonar.server.platform.db.EmbeddedDatabase.start(EmbeddedDatabase.java:63)
+	at org.sonar.server.platform.db.EmbeddedDatabaseFactory.start(EmbeddedDatabaseFactory.java:49)
+	at org.sonar.core.platform.StartableBeanPostProcessor.postProcessBeforeInitialization(StartableBeanPostProcessor.java:33)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyBeanPostProcessorsBeforeInitialization(AbstractAutowireCapableBeanFactory.java:440)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1796)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620)
+	... 44 common frames omitted
+Caused by: org.h2.jdbc.JdbcSQLInvalidAuthorizationSpecException: Wrong user name or password [28000-214]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:510)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.message.DbException.get(DbException.java:188)
+	at org.h2.engine.Engine.validateUserAndPassword(Engine.java:393)
+	at org.h2.engine.Engine.createSession(Engine.java:206)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:338)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:122)
+	at org.h2.Driver.connect(Driver.java:59)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:677)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:251)
+	at org.sonar.server.platform.db.EmbeddedDatabase.createDatabase(EmbeddedDatabase.java:115)
+	at org.sonar.server.platform.db.EmbeddedDatabase.startServer(EmbeddedDatabase.java:79)
+	... 50 common frames omitted
+2023.11.28 22:16:03 INFO  web[][o.s.s.a.EmbeddedTomcat] HTTP connector enabled on port 9000
+2023.11.28 22:16:03 INFO  web[][o.s.p.ProcessEntryPoint] Hard stopping process
+2023.11.28 22:16:22 INFO  web[][o.s.p.ProcessEntryPoint] Starting Web Server
+2023.11.28 22:16:23 INFO  web[][o.s.s.p.LogServerVersion] SonarQube Server / 9.7.1.62043 / 13c69ab992096c497badccbdb4a31110594574fd
+2023.11.28 22:16:23 INFO  web[][o.s.s.p.d.EmbeddedDatabase] Starting embedded database on port 9092 with url jdbc:h2:tcp://127.0.0.1:9092/sonar;NON_KEYWORDS=VALUE
+2023.11.28 22:16:23 INFO  web[][o.s.s.p.d.EmbeddedDatabase] Embedded database started. Data stored in: /opt/sonarqube/data
+2023.11.28 22:16:23 INFO  web[][o.sonar.db.Database] Create JDBC data source for jdbc:h2:tcp://127.0.0.1:9092/sonar;NON_KEYWORDS=VALUE
+2023.11.28 22:16:24 INFO  web[][c.z.h.HikariDataSource] HikariPool-1 - Starting...
+2023.11.28 22:16:24 INFO  web[][c.z.h.p.HikariPool] HikariPool-1 - Added connection conn2: url=jdbc:h2:tcp://127.0.0.1:9092/sonar user=
+2023.11.28 22:16:24 INFO  web[][c.z.h.HikariDataSource] HikariPool-1 - Start completed.
+2023.11.28 22:16:24 WARN  web[][o.s.db.dialect.H2] H2 database should be used for evaluation purpose only.
+2023.11.28 22:16:25 INFO  web[][o.s.s.p.ServerFileSystemImpl] SonarQube home: /opt/sonarqube
+2023.11.28 22:16:25 INFO  web[][o.s.s.u.SystemPasscodeImpl] System authentication by passcode is disabled
+2023.11.28 22:16:26 INFO  web[][o.s.s.p.ServerPluginManager] Deploy C# Code Quality and Security / 8.46.0.54807 / a9f10bf0c980dd16d428c08c7a984e2205a512df
+2023.11.28 22:16:26 INFO  web[][o.s.s.p.ServerPluginManager] Deploy Configuration detection fot Code Quality and Security / 1.2.0.267 / 4f37ba9ffb37a96d5883e52ad392ed32c5c6eaab
+2023.11.28 22:16:26 INFO  web[][o.s.s.p.ServerPluginManager] Deploy Flex Code Quality and Security / 2.7.0.2865 / 9e61d9774455b25eefd0b71bf8903cb030641864
+2023.11.28 22:16:26 INFO  web[][o.s.s.p.ServerPluginManager] Deploy Go Code Quality and Security / 1.11.0.3905 / e1f28bc000e04ca01881e84218d01d464a17a36f
+2023.11.28 22:16:26 INFO  web[][o.s.s.p.ServerPluginManager] Deploy HTML Code Quality and Security / 3.6.0.3106 / 963bdc9f051f5dcb698b418790364231aeea04f2
+2023.11.28 22:16:26 INFO  web[][o.s.s.p.ServerPluginManager] Deploy IaC Code Quality and Security / 1.9.2.2279 / f946157f4bbec5a6a1d40cf3418a0360c8c9c1f6
+2023.11.28 22:16:26 INFO  web[][o.s.s.p.ServerPluginManager] Deploy JaCoCo / 1.1.1.1157 / 83478572b9f23efac29de15e30c7758bbb0c0e47
+2023.11.28 22:16:26 INFO  web[][o.s.s.p.ServerPluginManager] Deploy Java Code Quality and Security / 7.14.0.30229 / 9079835c8f5e43cef40516cc49073e01bb8ad6e6
+2023.11.28 22:16:26 INFO  web[][o.s.s.p.ServerPluginManager] Deploy JavaScript/TypeScript/CSS Code Quality and Security / 9.9.0.19492 / e6156f1886415bd21e0726eb92f61d5605187a29
+2023.11.28 22:16:26 INFO  web[][o.s.s.p.ServerPluginManager] Deploy Kotlin Code Quality and Security / 2.10.0.1456 / 187f0a9c30ba26886ee5975df23e2f31de86a8c1
+2023.11.28 22:16:26 INFO  web[][o.s.s.p.ServerPluginManager] Deploy PHP Code Quality and Security / 3.25.0.9077 / 62146fca3dce550eb1dde73881a14c7af4988269
+2023.11.28 22:16:26 INFO  web[][o.s.s.p.ServerPluginManager] Deploy Python Code Quality and Security / 3.19.0.10254 / 411866233dc7e1f384592447884d27e220cb00ec
+2023.11.28 22:16:26 INFO  web[][o.s.s.p.ServerPluginManager] Deploy Ruby Code Quality and Security / 1.11.0.3905 / e1f28bc000e04ca01881e84218d01d464a17a36f
+2023.11.28 22:16:26 INFO  web[][o.s.s.p.ServerPluginManager] Deploy Scala Code Quality and Security / 1.11.0.3905 / e1f28bc000e04ca01881e84218d01d464a17a36f
+2023.11.28 22:16:26 INFO  web[][o.s.s.p.ServerPluginManager] Deploy Text file Code Quality and Security / 1.1.0.282 / a90347d77706f598413780a08442deec4ae68f4e
+2023.11.28 22:16:26 INFO  web[][o.s.s.p.ServerPluginManager] Deploy VB.NET Code Quality and Security / 8.46.0.54807 / a9f10bf0c980dd16d428c08c7a984e2205a512df
+2023.11.28 22:16:26 INFO  web[][o.s.s.p.ServerPluginManager] Deploy XML Code Quality and Security / 2.6.1.3686 / 8935c6f8341cd50defba2d8245d91dc4d07e24d0
+2023.11.28 22:16:29 INFO  web[][o.s.s.e.EsClientProvider] Connected to local Elasticsearch: [http://localhost:9001]
+2023.11.28 22:16:30 WARN  web[][o.s.a.s.w.WebService$Action] Description is not set on action api/monitoring/metrics
+2023.11.28 22:16:30 WARN  web[][o.s.a.s.w.WebService$Action] Since is not set on action api/monitoring/metrics
+2023.11.28 22:16:30 WARN  web[][o.s.a.s.w.WebService$Action] The response example is not set on action api/monitoring/metrics
+2023.11.28 22:16:30 WARN  web[][o.s.a.s.w.WebService$Action] The response example is not set on action api/system/liveness
+2023.11.28 22:16:30 INFO  web[][o.s.s.p.w.MasterServletFilter] Initializing servlet filter org.sonar.server.platform.web.WebServiceFilter@634aa81e [pattern=UrlPattern{inclusions=[/api/system/migrate_db.*, ...], exclusions=[/api/components/update_key, ...]}]
+2023.11.28 22:16:30 INFO  web[][o.s.s.p.DetectPluginChange] Detect plugin changes
+2023.11.28 22:16:30 INFO  web[][o.s.s.p.DetectPluginChange] No plugin change detected
+2023.11.28 22:16:30 INFO  web[][o.s.s.a.EmbeddedTomcat] HTTP connector enabled on port 9000
+2023.11.28 22:16:32 INFO  web[][o.s.s.s.LogServerId] Server ID: 147B411E-AYwT12DD1SLvgZWBxer8
+2023.11.28 22:16:32 WARN  web[][o.s.s.a.LogOAuthWarning] For security reasons, OAuth authentication should use HTTPS. You should set the property 'Administration > Configuration > Server base URL' to a HTTPS URL.
+2023.11.28 22:16:32 INFO  web[][o.s.s.p.UpdateCenterClient] Update center: https://update.sonarsource.org/update-center.properties (no proxy)
+2023.11.28 22:16:34 WARN  web[][o.s.a.s.w.WebService$Action] The response example is not set on action saml/validation_init
+2023.11.28 22:16:34 WARN  web[][o.s.a.s.w.WebService$Action] The response example is not set on action api/system/liveness
+2023.11.28 22:16:34 WARN  web[][o.s.a.s.w.WebService$Action] The response example is not set on action api/plugins/download
+2023.11.28 22:16:34 WARN  web[][o.s.a.s.w.WebService$Action] The response example is not set on action api/analysis_cache/get
+2023.11.28 22:16:34 WARN  web[][o.s.a.s.w.WebService$Action] The response example is not set on action api/alm_integrations/check_pat
+2023.11.28 22:16:34 WARN  web[][o.s.a.s.w.WebService$Action] The response example is not set on action api/push/sonarlint_events
+2023.11.28 22:16:34 INFO  web[][o.s.s.a.p.ExpiredSessionsCleaner] Purge of expired session tokens has removed 0 elements
+2023.11.28 22:16:34 INFO  web[][o.s.s.a.p.ExpiredSessionsCleaner] Purge of expired SAML message ids has removed 0 elements
+2023.11.28 22:16:34 INFO  web[][o.s.s.n.NotificationDaemon] Notification service started (delay 60 sec.)
+2023.11.28 22:16:34 INFO  web[][o.s.s.t.TelemetryDaemon] Sharing of SonarQube statistics is enabled.
+2023.11.28 22:16:34 INFO  web[][o.s.s.s.GeneratePluginIndex] Generate scanner plugin index
+2023.11.28 22:16:34 INFO  web[][o.s.s.s.RegisterPermissionTemplates] Register permission templates
+2023.11.28 22:16:34 INFO  web[][o.s.s.s.RenameDeprecatedPropertyKeys] Rename deprecated property keys
+2023.11.28 22:16:34 INFO  web[][o.s.s.s.RegisterPlugins] Register plugins
+2023.11.28 22:16:34 INFO  web[][o.s.s.p.w.MasterServletFilter] Initializing servlet filter org.sonar.server.platform.web.SonarLintConnectionFilter@5c45739e [pattern=UrlPattern{inclusions=[/api/*], exclusions=[]}]
+2023.11.28 22:16:34 INFO  web[][o.s.s.p.w.MasterServletFilter] Initializing servlet filter org.sonar.server.platform.web.WebServiceFilter@46680ad0 [pattern=UrlPattern{inclusions=[/api/issues/delete_comment.*, ...], exclusions=[/api/authentication/login.*, ...]}]
+2023.11.28 22:16:34 INFO  web[][o.s.s.p.w.MasterServletFilter] Initializing servlet filter org.sonar.server.platform.web.WebServiceReroutingFilter@fa54a8a [pattern=UrlPattern{inclusions=[/api/components/bulk_update_key, ...], exclusions=[]}]
+2023.11.28 22:16:34 INFO  web[][o.s.s.p.w.MasterServletFilter] Initializing servlet filter org.sonar.server.authentication.DefaultAdminCredentialsVerifierFilter@634a4aa2 [pattern=UrlPattern{inclusions=[/*], exclusions=[*.css, ...]}]
+2023.11.28 22:16:34 INFO  web[][o.s.s.p.w.MasterServletFilter] Initializing servlet filter org.sonar.server.authentication.InitFilter@14e40cd6 [pattern=UrlPattern{inclusions=[/sessions/init/*], exclusions=[]}]
+2023.11.28 22:16:34 INFO  web[][o.s.s.p.w.MasterServletFilter] Initializing servlet filter org.sonar.server.authentication.SamlValidationRedirectionFilter@125caa10 [pattern=UrlPattern{inclusions=[/oauth2/callback/saml], exclusions=[]}]
+2023.11.28 22:16:34 INFO  web[][o.s.s.p.w.MasterServletFilter] Initializing servlet filter org.sonar.server.authentication.OAuth2CallbackFilter@370843cb [pattern=UrlPattern{inclusions=[/oauth2/callback/*], exclusions=[]}]
+2023.11.28 22:16:34 INFO  web[][o.s.s.p.w.MasterServletFilter] Initializing servlet filter org.sonar.server.authentication.ResetPasswordFilter@6a610d2 [pattern=UrlPattern{inclusions=[/*], exclusions=[*.css, ...]}]
+2023.11.28 22:16:34 INFO  web[][o.s.s.p.w.MasterServletFilter] Initializing servlet filter org.sonar.server.authentication.ws.LoginAction@48f3f02d [pattern=UrlPattern{inclusions=[/api/authentication/login], exclusions=[]}]
+2023.11.28 22:16:34 INFO  web[][o.s.s.p.w.MasterServletFilter] Initializing servlet filter org.sonar.server.authentication.ws.LogoutAction@4e53456c [pattern=UrlPattern{inclusions=[/api/authentication/logout], exclusions=[]}]
+2023.11.28 22:16:34 INFO  web[][o.s.s.p.w.MasterServletFilter] Initializing servlet filter org.sonar.server.authentication.ws.ValidateAction@27831376 [pattern=UrlPattern{inclusions=[/api/authentication/validate], exclusions=[]}]
+2023.11.28 22:16:34 INFO  web[][o.s.s.p.w.MasterServletFilter] Initializing servlet filter org.sonar.server.saml.ws.ValidationInitAction@969d8cd [pattern=UrlPattern{inclusions=[/saml/validation_init], exclusions=[]}]
+2023.11.28 22:16:34 INFO  web[][o.s.s.p.w.MasterServletFilter] Initializing servlet filter org.sonar.server.saml.ws.ValidationAction@403260cf [pattern=UrlPattern{inclusions=[/saml/validation], exclusions=[]}]
+2023.11.28 22:16:34 INFO  web[][o.s.s.p.w.MasterServletFilter] Initializing servlet filter org.sonar.server.user.ws.ChangePasswordAction@32902e6c [pattern=UrlPattern{inclusions=[/api/users/change_password], exclusions=[]}]
+2023.11.28 22:16:34 INFO  web[][o.s.s.p.w.MasterServletFilter] Initializing servlet filter org.sonar.server.plugins.PluginsRiskConsentFilter@456b1e04 [pattern=UrlPattern{inclusions=[/*], exclusions=[*.css, ...]}]
+2023.11.28 22:16:34 INFO  web[][o.s.s.q.ProjectsInWarningDaemon] Counting number of projects in warning is not started as there are no projects in this situation.
+2023.11.28 22:16:34 INFO  web[][o.s.s.p.p.PlatformLevelStartup] Running Community Edition
+2023.11.28 22:16:35 INFO  web[][o.s.s.p.Platform] Web Server is operational
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'config' version : 1.2.0.267 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'csharp' version : 8.46.0.54807 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'flex' version : 2.7.0.2865 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'go' version : 1.11.0.3905 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'iac' version : 1.9.2.2279 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'jacoco' version : 1.1.1.1157 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'java' version : 7.14.0.30229 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'javascript' version : 9.9.0.19492 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'kotlin' version : 2.10.0.1456 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'php' version : 3.25.0.9077 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'python' version : 3.19.0.10254 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'ruby' version : 1.11.0.3905 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'sonarscala' version : 1.11.0.3905 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'text' version : 1.1.0.282 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'vbnet' version : 8.46.0.54807 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'web' version : 3.6.0.3106 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'xml' version : 2.6.1.3686 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'config' version : 1.2.0.267 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'csharp' version : 8.46.0.54807 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'flex' version : 2.7.0.2865 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'go' version : 1.11.0.3905 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'iac' version : 1.9.2.2279 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'jacoco' version : 1.1.1.1157 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'java' version : 7.14.0.30229 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'javascript' version : 9.9.0.19492 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'kotlin' version : 2.10.0.1456 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'php' version : 3.25.0.9077 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'python' version : 3.19.0.10254 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'ruby' version : 1.11.0.3905 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'sonarscala' version : 1.11.0.3905 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'text' version : 1.1.0.282 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'vbnet' version : 8.46.0.54807 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'web' version : 3.6.0.3106 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'xml' version : 2.6.1.3686 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'config' version : 1.2.0.267 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'csharp' version : 8.46.0.54807 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'flex' version : 2.7.0.2865 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'go' version : 1.11.0.3905 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'iac' version : 1.9.2.2279 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'jacoco' version : 1.1.1.1157 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'java' version : 7.14.0.30229 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'javascript' version : 9.9.0.19492 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'kotlin' version : 2.10.0.1456 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'php' version : 3.25.0.9077 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'python' version : 3.19.0.10254 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'ruby' version : 1.11.0.3905 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'sonarscala' version : 1.11.0.3905 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'text' version : 1.1.0.282 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'vbnet' version : 8.46.0.54807 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'web' version : 3.6.0.3106 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'xml' version : 2.6.1.3686 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'config' version : 1.2.0.267 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'csharp' version : 8.46.0.54807 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'flex' version : 2.7.0.2865 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'go' version : 1.11.0.3905 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'iac' version : 1.9.2.2279 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'jacoco' version : 1.1.1.1157 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'java' version : 7.14.0.30229 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'javascript' version : 9.9.0.19492 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'kotlin' version : 2.10.0.1456 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'php' version : 3.25.0.9077 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'python' version : 3.19.0.10254 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'ruby' version : 1.11.0.3905 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'sonarscala' version : 1.11.0.3905 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'text' version : 1.1.0.282 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'vbnet' version : 8.46.0.54807 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'web' version : 3.6.0.3106 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'xml' version : 2.6.1.3686 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'config' version : 1.2.0.267 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'csharp' version : 8.46.0.54807 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'flex' version : 2.7.0.2865 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'go' version : 1.11.0.3905 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'iac' version : 1.9.2.2279 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'jacoco' version : 1.1.1.1157 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'java' version : 7.14.0.30229 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'javascript' version : 9.9.0.19492 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'kotlin' version : 2.10.0.1456 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'php' version : 3.25.0.9077 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'python' version : 3.19.0.10254 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'ruby' version : 1.11.0.3905 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'sonarscala' version : 1.11.0.3905 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'text' version : 1.1.0.282 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'vbnet' version : 8.46.0.54807 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'web' version : 3.6.0.3106 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'xml' version : 2.6.1.3686 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'config' version : 1.2.0.267 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'csharp' version : 8.46.0.54807 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'flex' version : 2.7.0.2865 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'go' version : 1.11.0.3905 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'iac' version : 1.9.2.2279 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'jacoco' version : 1.1.1.1157 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'java' version : 7.14.0.30229 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'javascript' version : 9.9.0.19492 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'kotlin' version : 2.10.0.1456 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'php' version : 3.25.0.9077 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'python' version : 3.19.0.10254 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'ruby' version : 1.11.0.3905 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'sonarscala' version : 1.11.0.3905 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'text' version : 1.1.0.282 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'vbnet' version : 8.46.0.54807 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'web' version : 3.6.0.3106 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'xml' version : 2.6.1.3686 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'config' version : 1.2.0.267 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'csharp' version : 8.46.0.54807 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'flex' version : 2.7.0.2865 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'go' version : 1.11.0.3905 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'iac' version : 1.9.2.2279 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'jacoco' version : 1.1.1.1157 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'java' version : 7.14.0.30229 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'javascript' version : 9.9.0.19492 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'kotlin' version : 2.10.0.1456 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'php' version : 3.25.0.9077 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'python' version : 3.19.0.10254 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'ruby' version : 1.11.0.3905 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'sonarscala' version : 1.11.0.3905 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'text' version : 1.1.0.282 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'vbnet' version : 8.46.0.54807 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'web' version : 3.6.0.3106 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'xml' version : 2.6.1.3686 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'config' version : 1.2.0.267 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'csharp' version : 8.46.0.54807 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'flex' version : 2.7.0.2865 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'go' version : 1.11.0.3905 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'iac' version : 1.9.2.2279 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'jacoco' version : 1.1.1.1157 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'java' version : 7.14.0.30229 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'javascript' version : 9.9.0.19492 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'kotlin' version : 2.10.0.1456 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'php' version : 3.25.0.9077 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'python' version : 3.19.0.10254 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'ruby' version : 1.11.0.3905 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'sonarscala' version : 1.11.0.3905 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'text' version : 1.1.0.282 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'vbnet' version : 8.46.0.54807 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'web' version : 3.6.0.3106 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'xml' version : 2.6.1.3686 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'config' version : 1.2.0.267 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'csharp' version : 8.46.0.54807 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'flex' version : 2.7.0.2865 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'go' version : 1.11.0.3905 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'iac' version : 1.9.2.2279 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'jacoco' version : 1.1.1.1157 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'java' version : 7.14.0.30229 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'javascript' version : 9.9.0.19492 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'kotlin' version : 2.10.0.1456 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'php' version : 3.25.0.9077 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'python' version : 3.19.0.10254 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'ruby' version : 1.11.0.3905 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'sonarscala' version : 1.11.0.3905 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'text' version : 1.1.0.282 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'vbnet' version : 8.46.0.54807 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'web' version : 3.6.0.3106 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'xml' version : 2.6.1.3686 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'config' version : 1.2.0.267 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'csharp' version : 8.46.0.54807 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'flex' version : 2.7.0.2865 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'go' version : 1.11.0.3905 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'iac' version : 1.9.2.2279 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'jacoco' version : 1.1.1.1157 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'java' version : 7.14.0.30229 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'javascript' version : 9.9.0.19492 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'kotlin' version : 2.10.0.1456 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'php' version : 3.25.0.9077 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'python' version : 3.19.0.10254 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'ruby' version : 1.11.0.3905 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'sonarscala' version : 1.11.0.3905 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'text' version : 1.1.0.282 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'vbnet' version : 8.46.0.54807 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'web' version : 3.6.0.3106 has not been found on the update center.
+2023.11.28 22:17:54 INFO  web[AYwYAnjVIRA5UtksAAAS][o.s.u.c.UpdateCenter] The plugin 'xml' version : 2.6.1.3686 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'config' version : 1.2.0.267 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'csharp' version : 8.46.0.54807 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'flex' version : 2.7.0.2865 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'go' version : 1.11.0.3905 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'iac' version : 1.9.2.2279 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'jacoco' version : 1.1.1.1157 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'java' version : 7.14.0.30229 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'javascript' version : 9.9.0.19492 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'kotlin' version : 2.10.0.1456 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'php' version : 3.25.0.9077 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'python' version : 3.19.0.10254 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'ruby' version : 1.11.0.3905 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'sonarscala' version : 1.11.0.3905 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'text' version : 1.1.0.282 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'vbnet' version : 8.46.0.54807 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'web' version : 3.6.0.3106 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'xml' version : 2.6.1.3686 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'config' version : 1.2.0.267 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'csharp' version : 8.46.0.54807 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'flex' version : 2.7.0.2865 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'go' version : 1.11.0.3905 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'iac' version : 1.9.2.2279 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'jacoco' version : 1.1.1.1157 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'java' version : 7.14.0.30229 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'javascript' version : 9.9.0.19492 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'kotlin' version : 2.10.0.1456 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'php' version : 3.25.0.9077 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'python' version : 3.19.0.10254 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'ruby' version : 1.11.0.3905 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'sonarscala' version : 1.11.0.3905 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'text' version : 1.1.0.282 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'vbnet' version : 8.46.0.54807 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'web' version : 3.6.0.3106 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'xml' version : 2.6.1.3686 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'config' version : 1.2.0.267 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'csharp' version : 8.46.0.54807 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'flex' version : 2.7.0.2865 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'go' version : 1.11.0.3905 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'iac' version : 1.9.2.2279 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'jacoco' version : 1.1.1.1157 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'java' version : 7.14.0.30229 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'javascript' version : 9.9.0.19492 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'kotlin' version : 2.10.0.1456 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'php' version : 3.25.0.9077 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'python' version : 3.19.0.10254 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'ruby' version : 1.11.0.3905 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'sonarscala' version : 1.11.0.3905 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'text' version : 1.1.0.282 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'vbnet' version : 8.46.0.54807 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'web' version : 3.6.0.3106 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'xml' version : 2.6.1.3686 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'config' version : 1.2.0.267 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'csharp' version : 8.46.0.54807 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'flex' version : 2.7.0.2865 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'go' version : 1.11.0.3905 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'iac' version : 1.9.2.2279 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'jacoco' version : 1.1.1.1157 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'java' version : 7.14.0.30229 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'javascript' version : 9.9.0.19492 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'kotlin' version : 2.10.0.1456 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'php' version : 3.25.0.9077 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'python' version : 3.19.0.10254 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'ruby' version : 1.11.0.3905 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'sonarscala' version : 1.11.0.3905 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'text' version : 1.1.0.282 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'vbnet' version : 8.46.0.54807 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'web' version : 3.6.0.3106 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'xml' version : 2.6.1.3686 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'config' version : 1.2.0.267 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'csharp' version : 8.46.0.54807 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'flex' version : 2.7.0.2865 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'go' version : 1.11.0.3905 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'iac' version : 1.9.2.2279 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'jacoco' version : 1.1.1.1157 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'java' version : 7.14.0.30229 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'javascript' version : 9.9.0.19492 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'kotlin' version : 2.10.0.1456 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'php' version : 3.25.0.9077 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'python' version : 3.19.0.10254 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'ruby' version : 1.11.0.3905 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'sonarscala' version : 1.11.0.3905 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'text' version : 1.1.0.282 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'vbnet' version : 8.46.0.54807 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'web' version : 3.6.0.3106 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'xml' version : 2.6.1.3686 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'config' version : 1.2.0.267 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'csharp' version : 8.46.0.54807 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'flex' version : 2.7.0.2865 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'go' version : 1.11.0.3905 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'iac' version : 1.9.2.2279 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'jacoco' version : 1.1.1.1157 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'java' version : 7.14.0.30229 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'javascript' version : 9.9.0.19492 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'kotlin' version : 2.10.0.1456 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'php' version : 3.25.0.9077 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'python' version : 3.19.0.10254 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'ruby' version : 1.11.0.3905 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'sonarscala' version : 1.11.0.3905 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'text' version : 1.1.0.282 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'vbnet' version : 8.46.0.54807 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'web' version : 3.6.0.3106 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'xml' version : 2.6.1.3686 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'config' version : 1.2.0.267 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'csharp' version : 8.46.0.54807 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'flex' version : 2.7.0.2865 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'go' version : 1.11.0.3905 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'iac' version : 1.9.2.2279 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'jacoco' version : 1.1.1.1157 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'java' version : 7.14.0.30229 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'javascript' version : 9.9.0.19492 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'kotlin' version : 2.10.0.1456 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'php' version : 3.25.0.9077 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'python' version : 3.19.0.10254 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'ruby' version : 1.11.0.3905 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'sonarscala' version : 1.11.0.3905 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'text' version : 1.1.0.282 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'vbnet' version : 8.46.0.54807 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'web' version : 3.6.0.3106 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'xml' version : 2.6.1.3686 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'config' version : 1.2.0.267 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'csharp' version : 8.46.0.54807 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'flex' version : 2.7.0.2865 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'go' version : 1.11.0.3905 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'iac' version : 1.9.2.2279 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'jacoco' version : 1.1.1.1157 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'java' version : 7.14.0.30229 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'javascript' version : 9.9.0.19492 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'kotlin' version : 2.10.0.1456 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'php' version : 3.25.0.9077 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'python' version : 3.19.0.10254 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'ruby' version : 1.11.0.3905 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'sonarscala' version : 1.11.0.3905 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'text' version : 1.1.0.282 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'vbnet' version : 8.46.0.54807 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'web' version : 3.6.0.3106 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'xml' version : 2.6.1.3686 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'config' version : 1.2.0.267 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'csharp' version : 8.46.0.54807 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'flex' version : 2.7.0.2865 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'go' version : 1.11.0.3905 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'iac' version : 1.9.2.2279 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'jacoco' version : 1.1.1.1157 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'java' version : 7.14.0.30229 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'javascript' version : 9.9.0.19492 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'kotlin' version : 2.10.0.1456 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'php' version : 3.25.0.9077 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'python' version : 3.19.0.10254 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'ruby' version : 1.11.0.3905 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'sonarscala' version : 1.11.0.3905 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'text' version : 1.1.0.282 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'vbnet' version : 8.46.0.54807 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'web' version : 3.6.0.3106 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'xml' version : 2.6.1.3686 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'config' version : 1.2.0.267 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'csharp' version : 8.46.0.54807 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'flex' version : 2.7.0.2865 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'go' version : 1.11.0.3905 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'iac' version : 1.9.2.2279 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'jacoco' version : 1.1.1.1157 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'java' version : 7.14.0.30229 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'javascript' version : 9.9.0.19492 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'kotlin' version : 2.10.0.1456 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'php' version : 3.25.0.9077 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'python' version : 3.19.0.10254 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'ruby' version : 1.11.0.3905 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'sonarscala' version : 1.11.0.3905 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'text' version : 1.1.0.282 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'vbnet' version : 8.46.0.54807 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'web' version : 3.6.0.3106 has not been found on the update center.
+2023.11.28 22:19:00 INFO  web[AYwYAnjVIRA5UtksAAAe][o.s.u.c.UpdateCenter] The plugin 'xml' version : 2.6.1.3686 has not been found on the update center.
