@@ -14,7 +14,7 @@ pipeline {
             steps {
                 script {
                     // Establecer túnel SSH a la máquina de producción
-                    sh "ssh -i ${privateKey} ${remoteUser}@${remoteHost} -L 3306:localhost:3306 -N -f"
+                    sh "ssh -i $privateKey ${remoteUser}@${remoteHost} -L 3306:localhost:3306 -N -f"
                     
                     // Puedes agregar más pasos para verificar y esperar a que el túnel se establezca antes de continuar
                     // Esto podría implicar la ejecución de comandos SQL para verificar la conexión
