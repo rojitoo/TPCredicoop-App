@@ -5,12 +5,14 @@ pipeline {
       stage('install') {
         steps {
           sh 'npm install'
-          }
-        }
+    }
+  }
 
       stage ('test') {
-        sh 'npm run test_app.py'
-        }
+        steps{
+          sh 'npm run test_app.py'
+      }
     }
+  }
 }
 
