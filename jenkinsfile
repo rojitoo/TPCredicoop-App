@@ -5,7 +5,7 @@ pipeline {
         // Configuración de la máquina remota
         remoteHost = '192.168.0.31'
         remoteUser = 'lucas'
-        privateKey = 'home/lucas/.ssh/infraKey
+        privateKey = 'home/lucas/.ssh/infraKey'
         db_name = 'joomla_db'
         // Comando para establecer el túnel SSH
     }
