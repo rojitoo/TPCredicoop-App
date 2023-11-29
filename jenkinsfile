@@ -10,7 +10,7 @@ pipeline {
 
     stage ('test') {
       steps{
-        sh 'npm run test_app.py'
+        sh 'npm run test_app'
       }
     }
   }
