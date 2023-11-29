@@ -2,13 +2,14 @@ pipeline {
   agent {label 'master'}
 
     stages {
-      stage ('install') {
+      stage('install') {
         steps {
-          sh "npm install"
+          sh 'npm install'
+          }
         }
-      }
+
       stage ('test') {
-        sh "npm test_app.py"
-      }
+        sh 'npm run test_app.py'
+        }
     }
 }
