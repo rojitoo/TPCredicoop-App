@@ -1,18 +1,55 @@
 pipeline {
-  agent any
+    agent any
 
-  stages {
-    stage('install') {
-      steps {
-        sh 'npm install'
+    environment {
+        // Configuración de la máquina remota
+        remoteHost = '192.168.0.31'
+        remoteUser = 'lucas'
+        privateKey = 'lucas/.ssh/infraKey
+        db_name = 'joomla_db'
+        // Comando para establecer el túnel SSH
     }
-  }
+        stages {
+        stage('Conectar a la base de datos de Joomla') {
+            steps {
+                script {
+                    // Establecer túnel SSH a la máquina de producción
+                    sh "ssh -i ${privateKey} ${remoteUser}@${remoteHost} -L 3306:localhost:3306 -N -f"
+                    
+                    // Puedes agregar más pasos para verificar y esperar a que el túnel se establezca antes de continuar
+                    // Esto podría implicar la ejecución de comandos SQL para verificar la conexión
 
-    stage ('test') {
-      steps{
-        sh 'npm run test'
-      }
+                    // Establecer variables de entorno que estarán disponibles para otros stages
+                    env.DB_URL = 'jdbc:mysql://localhost:3306/' + dbName
+                }
+            }
+        }
+
+        stage('Ejecutar app.py') {
+            steps {
+                script {
+                    // Puedes usar la variable de entorno establecida en el stage anterior
+                    sh "python app.py ${env.DB_URL}"
+                }
+            }
+        }
+
+        stage('Ejecutar test_app.py') {
+            steps {
+                script {
+                    // También puedes usar la variable de entorno aquí
+                    sh "python test_app.py ${env.DB_URL}"
+                }
+            }
+        }
     }
-  }
+
+    post {
+        always {
+            // Siempre cerrar la conexión SSH después de finalizar el pipeline
+            script {
+                sh "pkill -f 'ssh -i ${privateKey} ${remoteUser}@${remoteHost} -L 3306:localhost:3306 -N -f'"
+            }
+        }
+    }
 }
-
