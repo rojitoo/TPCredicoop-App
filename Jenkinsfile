@@ -37,13 +37,13 @@ pipeline {
                 }
             }
         }
-                stage('Push a Docker Hub y limpiar') {
+        stage('Push a Docker Hub y limpiar') {
             steps {
                 script {
                     // Hacer login en Docker Hub               
                     docker.withRegistry('https://registry.hub.docker.com', 'passw-docker-hub') {
                         // Hacer push de la imagen a Docker Hub    
-                        docker.image("${env.dockerImage}").push()
+                    docker.image("${env.dockerImage}").push()
                     }
                 }
             }
