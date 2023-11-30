@@ -50,20 +50,20 @@ pipeline {
             }
         }
 
-        stage('Actualizar imagen en minikube') {
-            steps {
-                sshagent(['key_infra']) {
-                    sh """
-                        ssh -o StrictHostKeyChecking=no ${remoteUser}@${remoteHost} <<EOF
-                            kubectl config use-context minikube
-                            kubectl set image deployment/lista-de-articulos app-container=${env.dockerImage}
-                            kubectl rollout restart deployment/lista-de-articulos
-EOF
-                        """
-                }
+stage('Actualizar imagen en minikube') {
+    steps {
+        sshagent(['key_infra']) {
+            script {
+                sh """
+                    echo 'kubectl config use-context minikube' | ssh -o StrictHostKeyChecking=no ${remoteUser}@${remoteHost}
+                    echo 'kubectl set image deployment/lista-de-articulos app-container=${env.dockerImage}' | ssh -o StrictHostKeyChecking=no ${remoteUser}@${remoteHost}
+                    echo 'kubectl rollout restart deployment/lista-de-articulos' | ssh -o StrictHostKeyChecking=no ${remoteUser}@${remoteHost}
+                """
             }
         }
     }
+}
+
 
     post {
         always {
