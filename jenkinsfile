@@ -9,6 +9,12 @@ pipeline {
         dbname = 'joomla_db'
     }
     stages {
+
+        stage('Initialize') {
+        def dockerHome = tool 'myDocker'
+        env.PATH = "${dockerHome}/bin:${env.PATH}"
+        }
+
         stage('Construir y ejecutar contenedor Docker') {
             steps {
                 script {
