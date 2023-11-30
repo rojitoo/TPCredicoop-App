@@ -14,7 +14,7 @@ pipeline {
             steps {
                 script {
                     // Construir imagen Docker con un nombre específico
-                    def appImagen = docker.build('app-imagen', '.')
+                     def appImagen = docker.build('app-imagen', '.')
                 }
             }
         }
@@ -26,7 +26,7 @@ pipeline {
                     sh "ssh -L 3307:localhost:3306 -N -f -o StrictHostKeyChecking=no ${remoteUser}@${remoteHost}"
                 script {
                     // Ejecutar el contenedor Docker
-                    sh "docker run -d -p 5000:5000 --name flask_app ${appImagen.id}"
+                    sh "docker run -d -p 5000:5000 --name flask_app ${appImagen}"
                 }
 
                 }
