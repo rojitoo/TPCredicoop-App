@@ -1,5 +1,5 @@
 pipeline {
-  agent {dockerfile true}
+  agent any
   
   environment {
         // Configuración de la máquina remota
