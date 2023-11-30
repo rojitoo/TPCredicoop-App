@@ -7,7 +7,7 @@ pipeline {
         remoteUser = 'lucas'
         privateKey = credentials('key_infra')
         dbname = 'joomla_db'
-        // Comando para establecer el túnel SSH
+        pythonVersion = '3.9.18'
     }
         stages {
         stage('Conectar a la base de datos de Joomla') {
