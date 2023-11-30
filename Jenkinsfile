@@ -20,6 +20,13 @@ pipeline {
                 }
             }
         }
+        stage('Análisis SonarQube') {
+    steps {
+        withSonarQubeEnv('MySonarQube') {
+            sh ".mvnw clean org.sonarsource.scanner.maven:sonar-maven-plugion:3.9.5:sonar"
+        }
+    }
+}
 
         stage('Construir y ejecutar contenedor Docker') {
             steps {
