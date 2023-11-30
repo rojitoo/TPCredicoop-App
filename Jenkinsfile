@@ -44,7 +44,7 @@ pipeline {
                     // Hacer login en Docker Hub               
                     docker.withRegistry('https://registry.hub.docker.com', 'passw-docker-hub') {
                         // Hacer push de la imagen a Docker Hub
-                        sh "docker push ${env.dockerImage}"
+                        sh "docker push ${env.dockerImage}:latest"
                     }
                     // Detener y eliminar el contenedor
                     sh "docker stop flask_app && docker rm flask_app"
