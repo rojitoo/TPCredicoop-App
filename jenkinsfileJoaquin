@@ -26,8 +26,9 @@ pipeline {
                     sh "ssh -L 3307:localhost:3306 -N -f -o StrictHostKeyChecking=no ${remoteUser}@${remoteHost}"
                  script {
                     // Ejecutar docker-compose
+                    sh 'su root'
                     sh 'sudo docker-compose up -d'
-                    
+                    sh 'su admin'
                  }
 
                 }
