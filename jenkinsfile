@@ -9,7 +9,6 @@ pipeline {
         dbname = 'joomla_db'
         DOCKER_VERSION = '24.0.7' 
     }
-
     stages {
         stage('Instalar Docker') {
             steps {
@@ -26,7 +25,6 @@ pipeline {
                 }
             }
         }
-        
         stage('Construir y ejecutar contenedor Docker') {
             steps {
                 script {
