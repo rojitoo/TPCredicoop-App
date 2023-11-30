@@ -9,6 +9,7 @@ pipeline {
         dbname = 'joomla_db'
     }
 
+    
     stages {
         stage('Construir imagen Docker') {
             steps {
