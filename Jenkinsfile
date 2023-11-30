@@ -7,6 +7,9 @@ pipeline {
         remoteUser = 'lucas'
         privateKey = credentials('key_infra')
         dbname = 'joomla_db'
+        dockerImage = 'lucasvazz/app_flask_joomla'
+        dockerHubUsername = 'lucasvazz'  // Tu nombre de usuario de Docker Hub
+        dockerHubPassword = credentials('passw-docker-hub')  // El ID de tus credenciales de Docker Hub en Jenkins
     }
 
     stages {
@@ -14,7 +17,7 @@ pipeline {
             steps {
                 script {
                     // Construir imagen Docker con un nombre específico
-                    def appImagen = docker.build('app-imagen', '.')
+                    def appImagen = docker.build("${env.dockerImage}", '.')
                 }
             }
         }
@@ -27,7 +30,7 @@ pipeline {
                 }
                 script {
                     // Ejecutar el contenedor Docker
-                    sh "docker run -d -p 5000:5000 --name flask_app app-imagen"
+                    sh "docker run -d -p 5000:5000 --name flask_app ${env.dockerImage}"
                     // Esperar 10 segundos
                     sh "sleep 10"
                     // Ejecutar test_app.py
@@ -35,5 +38,23 @@ pipeline {
                 }
             }
         }
+
+        stage('Push a Docker Hub y limpiar') {
+            steps {
+                script {
+                    // Hacer login en Docker Hub
+                    withCredentials([string(credentialsId: "${env.dockerHubPassword}", variable: 'DOCKER_HUB_PASSWORD')]) {
+                        sh "docker login -u ${env.dockerHubUsername} -p ${DOCKER_HUB_PASSWORD}"
+                    }
+                    // Hacer push de la imagen a Docker Hub
+                    sh "docker push ${env.dockerHubUsername}/${env.dockerImage}"
+                    // Detener y eliminar el contenedor
+                    sh "docker stop flask_app && docker rm flask_app"
+                    // Eliminar la imagen
+                    sh "docker rmi ${env.dockerImage}"
+                }
+            }
+        }
     }
 }
+
