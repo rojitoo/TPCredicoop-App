@@ -43,32 +43,30 @@ pipeline {
                 script {
                     // Hacer login en Docker Hub               
                     docker.withRegistry('https://registry.hub.docker.com', 'passw-docker-hub') {
-                    // Hacer push de la imagen a Docker Hub    
-                    docker.image("${env.dockerImage}").push()
+                        // Hacer push de la imagen a Docker Hub    
+                        docker.image("${env.dockerImage}").push()
                     }
-                                    
-
                 }
             }
         }
    
-    stage('Actualizar imagen en minikube') {
-    steps {
-        sshagent(['key_infra']) {
-            sh """
-                ssh -o StrictHostKeyChecking=no ${remoteUser}@${remoteHost} <<EOF
-                    kubectl config use-context minikube
-                    kubectl set image deployment/lista-de-articulos app-container=${env.dockerImage}
-                    kubectl rollout restart deployment/lista-de-articulos
-EOF
-            """
+        stage('Actualizar imagen en minikube') {
+            steps {
+                sshagent(['key_infra']) {
+                    sh """
+                        ssh -o StrictHostKeyChecking=no ${remoteUser}@${remoteHost} <<EOF
+                            kubectl config use-context minikube
+                            kubectl set image deployment/lista-de-articulos app-container=${env.dockerImage}
+                            kubectl rollout restart deployment/lista-de-articulos
+                        EOF
+                    """
+                }
+            }
         }
     }
-}
 
- } }
     post {
-        always{
+        always {
             sh 'docker logout'
             // Detener y eliminar el contenedor            
             sh "docker stop flask_app && docker rm flask_app"           
@@ -76,5 +74,4 @@ EOF
             sh "docker rmi ${env.dockerImage}"            
         }
     }
-
 }
