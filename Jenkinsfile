@@ -26,7 +26,7 @@ pipeline {
                     sh "ssh -L 3307:localhost:3306 -N -f -o StrictHostKeyChecking=no ${remoteUser}@${remoteHost}"
                 script {
                     // Ejecutar el contenedor Docker
-                    sh "docker run -d -p 5000:5000 --name flask_app app-imagen"
+                    sh "docker run -rm -d -p 5000:5000 --name flask_app app-imagen"
                 }
 
                 }
