@@ -20,14 +20,15 @@ pipeline {
                 }
             }
         }
-stage('Análisis SonarQube') {
+   stage('Análisis SonarQube') {
     steps {
-        withSonarQubeEnv('MySonarQube') {
-            sh "mvnw clean org.sonarsource.scanner.maven:sonar-maven-plugin:3.9.5:sonar"
+        withCredentials([string(credentialsId: 'sonar_token', variable: 'SONAR_TOKEN')]) {
+            sh """
+                docker exec -e SONAR_TOKEN=$SONAR_TOKEN tp-credicoop-sonarqube-1 sonar-scanner -Dsonar.projectKey=my_project -Dsonar.sources=. -Dsonar.host.url=http://192.168.0.24/:9000 -Dsonar.login=jenkins -Dsonar.password=$SONAR_TOKEN
+            """
         }
     }
 }
-
 
         stage('Construir y ejecutar contenedor Docker') {
             steps {
