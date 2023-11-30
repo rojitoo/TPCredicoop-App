@@ -24,10 +24,10 @@ pipeline {
                  sshagent(['key_infra']) {
                     // Establecer túnel SSH a la máquina de producción
                     sh "ssh -L 3307:localhost:3306 -N -f -o StrictHostKeyChecking=no ${remoteUser}@${remoteHost}"
-                 }
-                script {
+                                script {
                     appImagen.inside {
                     sh "python app.py"
+                 }
                 }
                 }
             }
