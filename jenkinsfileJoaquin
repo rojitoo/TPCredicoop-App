@@ -14,7 +14,7 @@ pipeline {
             steps {
                 script {
                     // Construir imagen Docker con un nombre específico
-                    appImagen = docker.build('app-imagen', '.')
+                    appImagen = sudo docker.build('app-imagen', '.')
                 }
             }
         }
