@@ -52,6 +52,19 @@ pipeline {
             }
         }
     }
+    stage('Actualizar imagen en minikube') {
+    steps {
+        sshagent(['key_infra']) {
+            sh """
+                ssh -o StrictHostKeyChecking=no ${remoteUser}@${remoteHost} << EOF
+                    kubectl config use-context minikube
+                    kubectl set image deployment/lista-de-articulos app-container=${env.dockerImage}
+                    kubectl rollout restart deployment/<nombre-del-deployment>
+                EOF
+            """
+        }
+    }
+
     post {
         always{
             sh 'docker logout'
