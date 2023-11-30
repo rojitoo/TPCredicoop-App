@@ -13,7 +13,7 @@ pipeline {
             steps {
                 script {
                     // Establecer túnel SSH a la máquina de producción
-                    
+                    sh "ssh -i $privateKey ${remoteUser}@${remoteHost} -L 3306:localhost:3306 -N -f -o StrictHostKeyChecking=no"
                     
                     // Construir y ejecutar el contenedor Docker
                     sh "docker build -t mi-app ."
