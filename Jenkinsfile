@@ -3,7 +3,7 @@ pipeline {
     tools {nodejs "credicoopnode"}
     environment {
         // Configuración de la máquina remota
-        remoteHost = '192.168.32.131'
+        remoteHost = '192.168.32.129'
         remoteUser = 'admin'
         privateKey = credentials('key_infra')
         dbname = 'joomla_db'
