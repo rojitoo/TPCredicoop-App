@@ -20,17 +20,7 @@ pipeline {
                 }
             }
         }
-   stage('Análisis SonarQube') {
-    steps {
-        withCredentials([string(credentialsId: 'sonar_token', variable: 'SONAR_TOKEN')]) {
-            sh """
-                docker exec -e SONAR_TOKEN=$SONAR_TOKEN tp-credicoop-sonarqube-1 sonar-scanner -Dsonar.projectKey=my_project -Dsonar.sources=. -Dsonar.host.url=http://localhost:9000 -Dsonar.login=jenkins -Dsonar.password=admin123
-            """
-        }
-    }
-}
-
-        stage('Construir y ejecutar contenedor Docker') {
+      stage('Construir y ejecutar contenedor Docker') {
             steps {
                 sshagent(['key_infra']) {
                     // Establecer túnel SSH a la máquina de producción
@@ -47,6 +37,16 @@ pipeline {
             }
         }
 
+    
+      stage('Análisis SonarQube') {
+    steps {
+        withCredentials([string(credentialsId: 'sonar_token', variable: 'SONAR_TOKEN')]) {
+            sh """
+                docker exec -e SONAR_TOKEN=$SONAR_TOKEN ${env.dockerImage} sonar-scanner -Dsonar.projectKey=my_project -Dsonar.sources=. -Dsonar.host.url=http://localhost:9000 -Dsonar.login=jenkins -Dsonar.password=admin123
+            """
+        }
+    }
+}
         stage('Push a Docker Hub y limpiar') {
             steps {
                 script {
