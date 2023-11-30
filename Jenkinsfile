@@ -27,7 +27,7 @@ pipeline {
                  }
                 script {
                     appImagen.inside {
-                    sh "python app.py ${env.DB_URL}"
+                    sh "python app.py"
                 }
                 }
             }
