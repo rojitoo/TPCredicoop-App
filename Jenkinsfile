@@ -49,21 +49,21 @@ pipeline {
                 }
             }
         }
-   
-stage('Actualizar imagen en minikube') {
-    steps {
-        sshagent(['key_infra']) {
-            sh """
-                ssh -o StrictHostKeyChecking=no ${remoteUser}@${remoteHost} <<EOF
-                    kubectl config use-context minikube
-                    kubectl set image deployment/lista-de-articulos app-container=${env.dockerImage}
-                    kubectl rollout restart deployment/lista-de-articulos
+
+        stage('Actualizar imagen en minikube') {
+            steps {
+                sshagent(['key_infra']) {
+                    sh """
+                        ssh -o StrictHostKeyChecking=no ${remoteUser}@${remoteHost} <<'EOF'
+                            kubectl config use-context minikube
+                            kubectl set image deployment/lista-de-articulos app-container=${env.dockerImage}
+                            kubectl rollout restart deployment/lista-de-articulos
 EOF
-            """
+                        """
+                }
+            }
         }
     }
-}
-
 
     post {
         always {
