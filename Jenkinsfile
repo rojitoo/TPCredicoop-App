@@ -8,7 +8,7 @@ pipeline {
         privateKey = credentials('key_infra')
         dbname = 'joomla_db'
         dockerImage = 'lucasvazz/app_flask_joomla'
-        dockerHubCredentials = credentials('credenciales-docker-hub')  // El ID de tus credenciales de Docker Hub en Jenkins
+        dockerHubCredentials = credentials('passw-docker-hub')  // El ID de tus credenciales de Docker Hub en Jenkins
     }
 
     stages {
