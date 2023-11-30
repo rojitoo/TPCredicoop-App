@@ -21,10 +21,11 @@ pipeline {
 
         stage('Construir y ejecutar contenedor Docker') {
             steps {
-                script {
+                 sshagent('key_infra') {
                     // Establecer túnel SSH a la máquina de producción
-                    sh "ssh -i $privateKey ${remoteUser}@${remoteHost} -L 3306:localhost:3306 -N -f -o StrictHostKeyChecking=no"
-                    
+                    sh "ssh -L 3306:localhost:3306 -N -f -o StrictHostKeyChecking=no ${remoteUser}@${remoteHost}"
+                 }
+                script {
                     appImagen.inside {
                     sh "python app.py ${env.DB_URL}"
                 }
