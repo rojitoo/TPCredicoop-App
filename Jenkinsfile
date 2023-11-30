@@ -28,7 +28,7 @@ pipeline {
                 }
                 script {
                     // Ejecutar el contenedor Docker
-                    sh "docker run -d -p 5000:5000 --name flask_app --network=sonar_network ${env.dockerImage}"
+                    sh "docker run -d -p 5000:5000 --name flask_app  ${env.dockerImage}"
                     // Esperar 10 segundos
                     sh "sleep 10"
                     // Ejecutar test_app.py
@@ -42,7 +42,7 @@ pipeline {
     steps {
         withCredentials([string(credentialsId: 'sonar_token', variable: 'SONAR_TOKEN')]) {
             sh """
-                 docker exec -e SONAR_TOKEN=$SONAR_TOKEN -e SONAR_HOST_URL=http://172.30.0.3:9000 -e SONAR_LOGIN=admin -e SONAR_PASSWORD=admin123 flask_app sonar-scanner -Dsonar.projectKey=my_project -Dsonar.sources=.
+                 docker exec -e SONAR_TOKEN=$SONAR_TOKEN flask_app sonar-scanner -Dsonar.projectKey=my_project -Dsonar.sources=. -Dsonar.host.url=http://localhost:9000 -Dsonar.login=jenkins -Dsonar.password=admin123
             """
         }
     }
