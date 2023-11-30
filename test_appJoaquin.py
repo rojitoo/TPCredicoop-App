@@ -4,11 +4,11 @@ from appJoaquin import appJoaquin
 class TestApp(unittest.TestCase):
     def setUp(self):
         # Configura el cliente de prueba
-        self.app = app.test_client()
+        self.appJoaquin = appJoaquin.test_client()
 
     def test_lista_articulos_contiene_prueba1_y_prueba2(self):
         # Realiza una solicitud GET a la ruta /lista_articulos
-        response = self.app.get('/lista_articulos')
+        response = self.appJoaquin.get('/lista_articulos')
 
         # Verifica que la respuesta sea exitosa (código 200)
         self.assertEqual(response.status_code, 200)
