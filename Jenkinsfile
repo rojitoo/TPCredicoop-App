@@ -20,13 +20,16 @@ pipeline {
                 }
             }
         }
-        stage('Análisis SonarQube') {
-     steps {
-        withSonarQubeEnv('MySonarQube') {
-            sh "./mvnw clean org.sonarsource.scanner.maven:sonar-maven-plugin:3.9.5:sonar"
+stage('Análisis SonarQube') {
+    steps {
+        withCredentials([string(credentialsId: 'sonar_token', variable: 'SONAR_TOKEN')]) {
+            withSonarQubeEnv('MySonarQube') {
+                sh "sonar-scanner -Dsonar.projectKey=my_project -Dsonar.sources=. -Dsonar.host.url=http://192.168.0.24:9000 -Dsonar.login=$SONAR_TOKEN"
+            }
         }
     }
 }
+
 
         stage('Construir y ejecutar contenedor Docker') {
             steps {
