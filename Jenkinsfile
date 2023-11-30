@@ -8,6 +8,16 @@ pipeline {
     privateKey = credentials('key_infra')
     dbname = 'joomla_db'
     }
+
+      stages {
+        stage('Construir imagen Docker') {
+            steps {
+                script {
+                    // Construir imagen Docker con un nombre específico
+                    appImagen = docker.build('app-imagen', '.')
+                }
+            }
+        }
   
   stages {
         stage('Construir y ejecutar contenedor Docker') {
@@ -17,7 +27,7 @@ pipeline {
                     sh "ssh -i $privateKey ${remoteUser}@${remoteHost} -L 3306:localhost:3306 -N -f -o StrictHostKeyChecking=no"
                     
                 }
-              docker.image('mi-app').inside {
+              docker.image('app-imagen').inside {
                         sh "python app.py ${env.DB_URL}"
             }
         }
