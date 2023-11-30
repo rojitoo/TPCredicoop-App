@@ -37,6 +37,17 @@ pipeline {
                 }
             }
         }
+         stage('Code Quality') {
+            steps {
+                script {
+                    def scannerHome = tool 'sonarscanner';
+                    withSonarQubeEnv("SonarServer") {
+                    sh "${tool("sonarscanner")}/bin/sonar-scanner"
+                    }
+                }
+            }
+        }
+        
         stage('Push a Docker Hub y limpiar') {
             steps {
                 script {
