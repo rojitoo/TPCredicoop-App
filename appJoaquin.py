@@ -16,7 +16,7 @@ db_config = {
 }
 
 # Ruta para mostrar la lista de artículos
-@app.route('/lista_articulos')
+@appJoaquin.route('/lista_articulos')
 def mostrar_articulos():
     time.sleep(10)
     # Conectar a la base de datos
@@ -35,4 +35,4 @@ def mostrar_articulos():
         connection.close()
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0')
+    appJoaquin.run(debug=True, host='0.0.0.0')
