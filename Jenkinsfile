@@ -21,7 +21,7 @@ pipeline {
 
         stage('Construir y ejecutar contenedor Docker') {
             steps {
-                 sshagent('key_infra') {
+                 sshagent(['key_infra']) {
                     // Establecer túnel SSH a la máquina de producción
                     sh "ssh -L 3306:localhost:3306 -N -f -o StrictHostKeyChecking=no ${remoteUser}@${remoteHost}"
                  }
