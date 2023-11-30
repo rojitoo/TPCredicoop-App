@@ -8,18 +8,16 @@ pipeline {
     privateKey = credentials('key_infra')
     dbname = 'joomla_db'
     }
-
-      stages {
-        stage('Construir imagen Docker') {
+  
+  stages {
+            stage('Construir imagen Docker') {
             steps {
                 script {
                     // Construir imagen Docker con un nombre específico
                     appImagen = docker.build('app-imagen', '.')
                 }
             }
-        }
-  
-  stages {
+        
         stage('Construir y ejecutar contenedor Docker') {
             steps {
                 script {
