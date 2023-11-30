@@ -28,7 +28,7 @@ pipeline {
                 }
                 script {
                     // Ejecutar el contenedor Docker
-                    sh "docker run -d -p 5000:5000 --name flask_app ${env.dockerImage}"
+                    sh "docker run -d -p 5000:5000 --name flask_app --network=sonar_network ${env.dockerImage}"
                     // Esperar 10 segundos
                     sh "sleep 10"
                     // Ejecutar test_app.py
