@@ -14,7 +14,7 @@ pipeline {
             steps {
                 script {
                     // Construir imagen Docker con un nombre específico
-                    appImagen = docker.build('app-imagen', '.')
+                    def appImagen = docker.build('app-imagen', '.')
                 }
             }
         }
@@ -24,10 +24,10 @@ pipeline {
                  sshagent(['key_infra']) {
                     // Establecer túnel SSH a la máquina de producción
                     sh "ssh -L 3307:localhost:3306 -N -f -o StrictHostKeyChecking=no ${remoteUser}@${remoteHost}"
-                 script {
-                    // Ejecutar docker-compose
-                    sh 'docker-compose up -d'
-                 }
+                script {
+                    // Ejecutar el contenedor Docker
+                    sh "docker run -d -p 5000:5000 --name flask_app ${appImagen.id}"
+                }
 
                 }
                 }
