@@ -1,16 +1,15 @@
-# Use an official Python runtime as a parent image
 FROM python:3.9-slim
 
-# Install ping
+# Instalamos ping
 RUN apt-get update && apt-get install -y iputils-ping
 
-# Set the working directory to /app
+# Seteamos el directorio de trabajo a /app
 WORKDIR /app
 
-# Copy the current directory contents into the container at /app
 COPY . /app
 
-# Update and upgrade Debian packages, install necessary dependencies
+# Update de los paquetes e instalación de dependencias necesarias.
+
 RUN apt-get update && \
     apt-get upgrade -y && \
     apt-get install -y --no-install-recommends \
@@ -19,17 +18,17 @@ RUN apt-get update && \
         pkg-config \
     && rm -rf /var/lib/apt/lists/*
     
-# Install Flask and the MySQL client for Python
+# Instalamos Flask y el cliente de MySQL para Python
 RUN pip install Flask mysqlclient pymysql
 
-# Install pytest for testing
+# Instalamos pytest
 RUN pip install pytest
 
-# Make port 5000 available to the world outside this container
+# exponemos el puerto 
 EXPOSE 5000
 
-# Define environment variable
+# Definimos una variable de entorno
 ENV NAME World
 
-# Run app.py when the container launches
+# Corremos app.py cuando el container se inicia
 CMD ["python", "app.py"]
