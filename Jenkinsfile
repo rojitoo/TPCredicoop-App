@@ -37,18 +37,16 @@ pipeline {
             }
         }
 
-    stage('Análisis SonarQube') {
+     stage('Análisis SonarQube') {
     steps {
-        withSonarQubeEnv('SonarQube') {
-            script {
-                // Utiliza las configuraciones del plugin de SonarQube Scanner
-                sh 'mvn sonar:sonar'
-            }
+        withCredentials([string(credentialsId: 'sonar_token', variable: 'SONAR_TOKEN')]) {
+            sh """
+                 docker exec -e SONAR_TOKEN=$SONAR_TOKEN flask_app sonar-scanner -Dsonar.projectKey=my_project -Dsonar.sources=. -Dsonar.host.url=http://localhost:9000 -Dsonar.login=jenkins -Dsonar.password=admin123 
+            """
         }
     }
 }
 
- 
         stage('Push a Docker Hub y limpiar') {
             steps {
                 script {
