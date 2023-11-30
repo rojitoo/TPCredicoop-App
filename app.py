@@ -18,7 +18,7 @@ db_config = {
 # Ruta para mostrar la lista de artículos
 @app.route('/lista_articulos')
 def mostrar_articulos():
-    time.sleep(10)
+    time.sleep(3)
     # Conectar a la base de datos
     connection = pymysql.connect(**db_config)
 
