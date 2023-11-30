@@ -1,6 +1,6 @@
 pipeline {
     agent any
-
+    tools {nodejs "credicoopnode"}
     environment {
         // Configuración de la máquina remota
         remoteHost = '192.168.32.129'
