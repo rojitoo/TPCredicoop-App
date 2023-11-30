@@ -63,7 +63,7 @@ stage('Actualizar imagen en minikube') {
         }
     }
 }
-
+    }
 
     post {
         always {
