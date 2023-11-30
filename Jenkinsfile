@@ -42,10 +42,8 @@ pipeline {
         stage('Push a Docker Hub y limpiar') {
             steps {
                 script {
-                    // Hacer login en Docker Hub
-                    withCredentials([string(credentialsId: "${env.dockerHubPassword}", variable: 'DOCKER_HUB_PASSWORD')]) {
-                        sh "docker login -u ${env.dockerHubUsername} -p ${DOCKER_HUB_PASSWORD}"
-                    }
+                    // Hacer login en Docker Hub               
+                    sh "docker login -u ${env.dockerHubUsername} -p ${env.dockerHubPassword}"    
                     // Hacer push de la imagen a Docker Hub
                     sh "docker push ${env.dockerHubUsername}/${env.dockerImage}"
                     // Detener y eliminar el contenedor
