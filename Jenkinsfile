@@ -24,7 +24,7 @@ pipeline {
     steps {
         withCredentials([string(credentialsId: 'sonar_token', variable: 'SONAR_TOKEN')]) {
             sh """
-                docker exec -e SONAR_TOKEN=$SONAR_TOKEN tp-credicoop-sonarqube-1 sonar-scanner -Dsonar.projectKey=my_project -Dsonar.sources=. -Dsonar.host.url=http://192.168.0.24/:9000 -Dsonar.login=jenkins -Dsonar.password=$SONAR_TOKEN
+                docker exec -e SONAR_TOKEN=$SONAR_TOKEN tp-credicoop-sonarqube-1 sonar-scanner -Dsonar.projectKey=my_project -Dsonar.sources=. -Dsonar.host.url=http://localhost/:9000 -Dsonar.login=jenkins -Dsonar.password=$SONAR_TOKEN
             """
         }
     }
