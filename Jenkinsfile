@@ -35,13 +35,13 @@ pipeline {
                 }
             }
         }
-         post {
-            always {
-                sh 'docker logout'
+    post {
+        always {
+            sh 'docker logout'
                 // Detener y eliminar el contenedor            
-                sh "docker stop flask_app && docker rm flask_app"           
+            sh "docker stop flask_app && docker rm flask_app"           
                 // Eliminar la imagen
-                sh "docker rmi ${env.dockerImage}"            
+            sh "docker rmi ${env.dockerImage}"            
         }
     }
 }
