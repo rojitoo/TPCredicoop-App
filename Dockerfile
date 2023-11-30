@@ -18,13 +18,7 @@ RUN apt-get update && \
         default-libmysqlclient-dev \
         pkg-config \
     && rm -rf /var/lib/apt/lists/*
-
-# Install Docker
-RUN curl -fsSLO https://get.docker.com/builds/Linux/x86_64/docker-17.04.0-ce.tgz \
-  && tar xzvf docker-17.04.0-ce.tgz \
-  && mv docker/docker /usr/local/bin \
-  && rm -r docker docker-17.04.0-ce.tgz
-
+    
 # Install Flask and the MySQL client for Python
 RUN pip install Flask mysqlclient pymysql
 
