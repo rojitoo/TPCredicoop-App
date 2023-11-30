@@ -35,6 +35,7 @@ pipeline {
                 }
             }
         }
+    }
     post {
         always {
             sh 'docker logout'
@@ -44,5 +45,4 @@ pipeline {
             sh "docker rmi ${env.dockerImage}"            
         }
     }
-}
 }
