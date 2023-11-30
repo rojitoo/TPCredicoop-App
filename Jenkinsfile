@@ -51,7 +51,7 @@ pipeline {
                 }
             }
         }
-    }
+   
     stage('Actualizar imagen en minikube') {
     steps {
         sshagent(['key_infra']) {
@@ -64,7 +64,7 @@ pipeline {
             """
         }
     }
-
+ }
     post {
         always{
             sh 'docker logout'
