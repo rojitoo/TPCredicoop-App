@@ -10,6 +10,15 @@ pipeline {
         pythonVersion = '3.9.18'
     }
         stages {
+        stage('Instalar Python') {
+            steps {
+                script {
+                    // Instalar Python usando herramientas de instalación de Jenkins
+                    def pythonHome = tool 'Python'
+                    env.PATH = "${pythonHome}/bin:${env.PATH}"
+                }
+            }
+        }
         stage('Conectar a la base de datos de Joomla') {
             steps {
                 script {
