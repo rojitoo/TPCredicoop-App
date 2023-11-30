@@ -42,7 +42,7 @@ pipeline {
     steps {
         withCredentials([string(credentialsId: 'sonar_token', variable: 'SONAR_TOKEN')]) {
             sh """
-                 docker exec -e SONAR_TOKEN=$SONAR_TOKEN -e SONAR_HOST_URL=http://192.168.0.24:9000 -e SONAR_LOGIN=admin -e SONAR_PASSWORD=admin123 flask_app sonar-scanner -Dsonar.projectKey=my_project -Dsonar.sources=.
+                 docker exec -e SONAR_TOKEN=$SONAR_TOKEN -e SONAR_HOST_URL=http://172.30.0.3:9000 -e SONAR_LOGIN=admin -e SONAR_PASSWORD=admin123 flask_app sonar-scanner -Dsonar.projectKey=my_project -Dsonar.sources=.
             """
         }
     }
