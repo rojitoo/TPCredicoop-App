@@ -7,6 +7,8 @@ pipeline {
         remoteUser = 'admin'
         privateKey = credentials('key_infra')
         dbname = 'joomla_db'
+        dockerImage = 'lucasvazz/app_flask_joomla'
+        dockerHubCredentials = credentials('passw-docker-hub') 
     }
 
     stages {
@@ -35,6 +37,32 @@ pipeline {
                 }
             }
         }
+                stage('Push a Docker Hub y limpiar') {
+            steps {
+                script {
+                    // Hacer login en Docker Hub               
+                    docker.withRegistry('https://registry.hub.docker.com', 'passw-docker-hub') {
+                        // Hacer push de la imagen a Docker Hub    
+                        docker.image("${env.dockerImage}").push()
+                    }
+                }
+            }
+        }
+
+        stage('Actualizar imagen en minikube') {
+            steps {
+                sshagent(['key_infra']) {
+                script {
+                    sh """
+                        echo 'kubectl config use-context minikube' | ssh -o StrictHostKeyChecking=no ${remoteUser}@${remoteHost}
+                        echo 'kubectl set image deployment/lista-de-articulos app-container=${env.dockerImage}' | ssh -o StrictHostKeyChecking=no ${remoteUser}@${remoteHost}
+                        echo 'kubectl rollout restart deployment/lista-de-articulos' | ssh -o StrictHostKeyChecking=no ${remoteUser}@${remoteHost}
+                    """
+            }
+        }
+    }
+}
+        
     }
     post {
         always {
