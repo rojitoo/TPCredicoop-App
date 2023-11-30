@@ -7,7 +7,7 @@ pipeline {
         remoteUser = 'admin'
         privateKey = credentials('key_infra')
         dbname = 'joomla_db'
-        dockerImage = 'lucasvazz/app_flask_joomla'
+        dockerImage = 'rojitoo/app_flask_joomla'
         dockerHubCredentials = credentials('passw-docker-hub') 
     }
 
@@ -16,7 +16,7 @@ pipeline {
             steps {
                 script {
                     // Construir imagen Docker con un nombre específico
-                    def appImagen = docker.build('app-imagen', '.')
+                    def appImagen = docker.build("${env.dockerImage}", '.')
                 }
             }
         }
