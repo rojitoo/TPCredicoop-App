@@ -8,8 +8,7 @@ pipeline {
         privateKey = credentials('key_infra')
         dbname = 'joomla_db'
         dockerImage = 'lucasvazz/app_flask_joomla'
-        dockerHubUsername = 'lucasvazz'  // Tu nombre de usuario de Docker Hub
-        dockerHubPassword = credentials('passw-docker-hub')  // El ID de tus credenciales de Docker Hub en Jenkins
+        dockerHubCredentials = credentials('credenciales-docker-hub')  // El ID de tus credenciales de Docker Hub en Jenkins
     }
 
     stages {
@@ -43,9 +42,10 @@ pipeline {
             steps {
                 script {
                     // Hacer login en Docker Hub               
-                    sh "docker login -u ${env.dockerHubUsername} -p ${env.dockerHubPassword}"    
-                    // Hacer push de la imagen a Docker Hub
-                    sh "docker push ${env.dockerHubUsername}/${env.dockerImage}"
+                    docker.withRegistry('https://registry.hub.docker.com', 'credenciales-docker-hub') {
+                        // Hacer push de la imagen a Docker Hub
+                        sh "docker push ${env.dockerImage}"
+                    }
                     // Detener y eliminar el contenedor
                     sh "docker stop flask_app && docker rm flask_app"
                     // Eliminar la imagen
@@ -53,6 +53,9 @@ pipeline {
                 }
             }
         }
+    }
+}
+
     }
 }
 
