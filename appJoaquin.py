@@ -2,7 +2,7 @@ from flask import Flask, render_template
 import pymysql
 import time
 
-app = Flask(__name__, template_folder='template')
+appJoaquin = Flask(__name__, template_folder='template')
 
 # Configuración de la base de datos
 db_config = {
