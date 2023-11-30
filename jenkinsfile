@@ -7,29 +7,20 @@ pipeline {
         remoteUser = 'lucas'
         privateKey = credentials('key_infra')
         dbname = 'joomla_db'
-        pythonVersion = '3.9.18'
     }
-        stages {
-        stage('Instalar Python') {
-            steps {
-                script {
-                    // Instalar Python usando herramientas de instalación de Jenkins
-                    def pythonHome = tool 'Python'
-                    env.PATH = "${pythonHome}/bin:${env.PATH}"
-                }
-            }
-        }
-        stage('Conectar a la base de datos de Joomla') {
+
+    stages {
+        stage('Construir y ejecutar contenedor Docker') {
             steps {
                 script {
                     // Establecer túnel SSH a la máquina de producción
                     sh "ssh -i $privateKey ${remoteUser}@${remoteHost} -L 3306:localhost:3306 -N -f -o StrictHostKeyChecking=no"
                     
-                    // Puedes agregar más pasos para verificar y esperar a que el túnel se establezca antes de continuar
-                    // Esto podría implicar la ejecución de comandos SQL para verificar la conexión
-
-                    // Establecer variables de entorno que estarán disponibles para otros stages
-                    env.DB_URL = 'jdbc:mysql://localhost:3306/' + dbName
+                    // Construir y ejecutar el contenedor Docker
+                    sh "docker build -t mi-app ."
+                    sh "docker run -d -p 5000:5000 --name mi-app-container mi-app"
+                    
+                    // Puedes agregar más pasos para verificar y esperar a que el contenedor se inicie antes de continuar
                 }
             }
         }
@@ -38,7 +29,7 @@ pipeline {
             steps {
                 script {
                     // Puedes usar la variable de entorno establecida en el stage anterior
-                    sh "python app.py ${env.DB_URL}"
+                    sh "docker exec mi-app-container python app.py ${env.DB_URL}"
                 }
             }
         }
@@ -47,7 +38,7 @@ pipeline {
             steps {
                 script {
                     // También puedes usar la variable de entorno aquí
-                    sh "python test_app.py ${env.DB_URL}"
+                    sh "docker exec mi-app-container python test_app.py ${env.DB_URL}"
                 }
             }
         }
@@ -55,9 +46,11 @@ pipeline {
 
     post {
         always {
-            // Siempre cerrar la conexión SSH después de finalizar el pipeline
+            // Siempre cerrar la conexión SSH y detener el contenedor después de finalizar el pipeline
             script {
                 sh "pkill -f 'ssh -i ${privateKey} ${remoteUser}@${remoteHost} -L 3306:localhost:3306 -N -f'"
+                sh "docker stop mi-app-container"
+                sh "docker rm mi-app-container"
             }
         }
     }
