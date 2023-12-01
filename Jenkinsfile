@@ -31,11 +31,11 @@ pipeline {
                 }
                 script {
                     // Ejecutar el contenedor Docker
-                    sh "docker run -d -p 5000:5000 --name flask_app  ${env.dockerImage}"
+                    sh "docker run -d -p 5000:5000 -v /home/lucas/archivos-app:/app --name flask_app  ${env.dockerImage}"
                     // Esperar 10 segundos
                     sh "sleep 10"
                     // Ejecutar test_app.py
-                    sh "docker exec flask_app python3 test_app.py"
+                    sh "docker exec flask_app python3 /app/test_app.py"
                 }
             }
         }
