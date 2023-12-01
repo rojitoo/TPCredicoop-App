@@ -88,7 +88,8 @@ pipeline {
             // Detener y eliminar el contenedor            
             sh "docker stop flask_app && docker rm flask_app"           
             // Eliminar la imagen
-            sh "docker rmi ${env.dockerImage}"            
+            sh "docker rmi ${env.dockerImage}"
+            sh "docker rmi registry.hub.docker.com/lucasvazz/app_flask_joomla"
         }
     }
 }
