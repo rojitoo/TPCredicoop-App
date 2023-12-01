@@ -1,6 +1,6 @@
 pipeline {
     agent any
-
+tools {nodejs "nodejs"}
     environment {
         // Configuración de la máquina remota
         remoteHost = '192.168.0.31'
@@ -9,7 +9,6 @@ pipeline {
         dbname = 'joomla_db'
         dockerImage = 'lucasvazz/app_flask_joomla'
         dockerHubCredentials = credentials('passw-docker-hub')  // El ID de tus credenciales de Docker Hub en Jenkins
-        sonarScannerHome = tool 'python3'
     }
 
     stages {
@@ -26,7 +25,7 @@ pipeline {
             steps {
                 script {
                     withSonarQubeEnv('scanner-sonnar-server') {
-                        sh "${sonarScannerHome}/bin/sonar-scanner"
+                        sh "${tool("nodejs")}/bin/sonar-scanner"
                     }
                 }
             }
