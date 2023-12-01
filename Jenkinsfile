@@ -9,6 +9,7 @@ pipeline {
         dbname = 'joomla_db'
         dockerImage = 'lucasvazz/app_flask_joomla'
         dockerHubCredentials = credentials('passw-docker-hub')  // El ID de tus credenciales de Docker Hub en Jenkins
+        sonarScannerHome = tool 'python3'
     }
 
     stages {
@@ -17,6 +18,16 @@ pipeline {
                 script {
                     // Construir imagen Docker con un nombre específico
                     def appImagen = docker.build("${env.dockerImage}", '.')
+                }
+            }
+        }
+
+        stage('Code Quality') {
+            steps {
+                script {
+                    withSonarQubeEnv('sonarqube') {
+                        sh "${sonarScannerHome}/bin/sonar-scanner"
+                    }
                 }
             }
         }
@@ -37,15 +48,6 @@ pipeline {
             }
         }
 
-     stage('Análisis SonarQube') {
-    steps {
-        withCredentials([string(credentialsId: 'sonar_token', variable: 'SONAR_TOKEN')]) {
-            sh """
-                 docker exec -e SONAR_TOKEN=$SONAR_TOKEN flask_app sonar-scanner -Dsonar.projectKey=my_project -Dsonar.sources=. -Dsonar.host.url=http://localhost:9000 -Dsonar.login=jenkins -Dsonar.password=admin123 
-            """
-        }
-    }
-}
 
         stage('Push a Docker Hub y limpiar') {
             steps {
