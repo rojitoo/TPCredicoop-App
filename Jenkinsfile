@@ -32,8 +32,11 @@ pipeline {
                 script {
                     // Ejecutar el contenedor Docker
                     sh "docker run -d -p 5000:5000 -v /home/lucas/archivos-app:/app --name flask_app ${env.dockerImage}"
-                    // Esperar 10 segundos
-                    sh "sleep 10"
+            // Esperar hasta que el contenedor esté en ejecución
+            waitUntil {
+                def status = sh(script: 'docker inspect --format \'{{.State.Status}}\' flask_app', returnStatus: true).trim()
+                return status == 'running'
+            }
                     // Ejecutar test_app.py
                     sh "docker exec flask_app python3 /app/test_app.py"
                 }
