@@ -25,7 +25,7 @@ tools {nodejs "nodejs"}
             steps {
                 script {
                     def scannerHome = tool 'sonarscanner';
-                    withSonarQubeEnv("SonarServer") {
+                    withSonarQubeEnv("scanner-sonnar-server") {
                     sh "${tool("sonarscanner")}/bin/sonar-scanner"
                     }
                 }
