@@ -33,7 +33,7 @@ pipeline {
                     // Ejecutar el contenedor Docker
                     sh "docker run -d -p 5000:5000 --name flask_app ${env.dockerImage}"
                     sh "sleep 5"
-                    sh "docker cp flask_app:/app /home/lucas/archivos-app"
+                    sh "docker cp flask_app:/app /var/lib/jenkins/pruebaSonar"
                     sh "sleep 5"
                     // Ejecutar test_app.py
                     sh "docker exec flask_app python3 /app/app-python/test_app.py"
