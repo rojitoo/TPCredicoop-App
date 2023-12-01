@@ -24,12 +24,13 @@ tools {nodejs "nodejs"}
         stage('SonarQube Scanner') {
             steps {
                 script {
-                    withSonarQubeEnv('scanner-sonnar-server') {
-                        sh "${tool("nodejs")}/bin/sonar-scanner"
+                    def scannerHome = tool 'sonarscanner';
+                    withSonarQubeEnv("SonarServer") {
+                    sh "${tool("sonarscanner")}/bin/sonar-scanner"
                     }
                 }
-            }
-        }
+            }
+        }
       stage('Construir y ejecutar contenedor Docker') {
             steps {
                 sshagent(['key_infra']) {
