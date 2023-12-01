@@ -18,7 +18,7 @@ pipeline {
                 sh """
                     docker exec -e SONAR_TOKEN=$SONAR_TOKEN tp-credicoop-sonarqube-1 sonar-scanner \
                         -Dsonar.projectKey=my_project \
-                        -Dsonar.sources=/var/lib/jenkins/jobs/tp-credicoop \
+                        -Dsonar.sources=/var/lib/jenkins/jobs \
                         -Dsonar.host.url=http://localhost:9000 \
                         -Dsonar.login=admin \
                         -Dsonar.password=admin123
