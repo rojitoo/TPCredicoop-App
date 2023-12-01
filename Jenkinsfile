@@ -12,22 +12,6 @@ pipeline {
 
     stages {
         
-    stage('Análisis SonarQube') {
-        steps {
-            withCredentials([string(credentialsId: 'sonar_token', variable: 'SONAR_TOKEN')]) {
-                sh """
-                    docker exec -e SONAR_TOKEN=$SONAR_TOKEN tp-credicoop-sonarqube-1 sonar-scanner \
-                        -Dsonar.projectKey=Tp_Credicoop \
-                        -Dsonar.sources=/opt/sonarqube/jenkins/jobs \
-                        -Dsonar.host.url=http://localhost:9000 \
-                        -Dsonar.login=admin \
-                        -Dsonar.password=admin123
-                """
-            }
-        }
-    }
-
-
         stage('Construir imagen Docker') {
             steps {
                 script {
@@ -55,6 +39,21 @@ pipeline {
             }
         }
 
+          stage('Análisis SonarQube') {
+        steps {
+            withCredentials([string(credentialsId: 'sonar_token', variable: 'SONAR_TOKEN')]) {
+                sh """
+                    docker exec -e SONAR_TOKEN=$SONAR_TOKEN tp-credicoop-sonarqube-1 sonar-scanner \
+                        -Dsonar.projectKey=Tp_Credicoop \
+                        -Dsonar.sources=/opt/sonarqube/jenkins/jobs \
+                        -Dsonar.host.url=http://localhost:9000 \
+                        -Dsonar.login=admin \
+                        -Dsonar.password=admin123
+                """
+            }
+        }
+    }
+        
         stage('Push a Docker Hub y limpiar') {
             steps {
                 script {
