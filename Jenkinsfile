@@ -12,19 +12,21 @@ pipeline {
 
     stages {
         
-     stage('Análisis SonarQube') {
-    steps {
-        withCredentials([string(credentialsId: 'sonar_token', variable: 'SONAR_TOKEN')]) {
-            sh """
-               docker exec -e SONAR_TOKEN=$SONAR_TOKEN -w /var/lib/jenkins/jobs/tp-credicoop -i jenkins/jenkins-agent:latest \
-    sonarsource/sonar-scanner-cli
-
-
-            """
-
+    stage('Análisis SonarQube') {
+        steps {
+            withCredentials([string(credentialsId: 'sonar_token', variable: 'SONAR_TOKEN')]) {
+                sh """
+                    docker exec -e SONAR_TOKEN=$SONAR_TOKEN tp-credicoop-sonarqube-1 sonar-scanner \
+                        -Dsonar.projectKey=my_project \
+                        -Dsonar.sources=. \
+                        -Dsonar.host.url=http://localhost:9000 \
+                        -Dsonar.login=admin \
+                        -Dsonar.password=admin123
+                """
+            }
         }
     }
-}
+
 
         stage('Construir imagen Docker') {
             steps {
