@@ -1,6 +1,8 @@
 pipeline {
     agent any
-tools {nodejs "nodejs"}
+    tools {
+        nodejs "nodejs"
+    }
     environment {
         // Configuración de la máquina remota
         remoteHost = '192.168.0.31'
@@ -26,13 +28,13 @@ tools {nodejs "nodejs"}
                 script {
                     def scannerHome = tool 'sonarscanner';
                     withSonarQubeEnv("scanner-sonnar-server") {
-                    sh "${tool("sonarscanner")}/bin/sonar-scanner"
+                        sh "${tool("sonarscanner")}/bin/sonar-scanner"
                     }
                 }
-            }
-        }
+            }
+        }
 
-      stage('Construir y ejecutar contenedor Docker') {
+        stage('Construir y ejecutar contenedor Docker') {
             steps {
                 sshagent(['key_infra']) {
                     // Establecer túnel SSH a la máquina de producción
@@ -49,7 +51,6 @@ tools {nodejs "nodejs"}
             }
         }
 
-
         stage('Push a Docker Hub y limpiar') {
             steps {
                 script {
@@ -62,19 +63,19 @@ tools {nodejs "nodejs"}
             }
         }
 
-stage('Actualizar imagen en minikube') {
-    steps {
-        sshagent(['key_infra']) {
-            script {
-                sh """
-                    echo 'kubectl config use-context minikube' | ssh -o StrictHostKeyChecking=no ${remoteUser}@${remoteHost}
-                    echo 'kubectl set image deployment/lista-de-articulos app-container=${env.dockerImage}' | ssh -o StrictHostKeyChecking=no ${remoteUser}@${remoteHost}
-                    echo 'kubectl rollout restart deployment/lista-de-articulos' | ssh -o StrictHostKeyChecking=no ${remoteUser}@${remoteHost}
-                """
+        stage('Actualizar imagen en minikube') {
+            steps {
+                sshagent(['key_infra']) {
+                    script {
+                        sh """
+                            echo 'kubectl config use-context minikube' | ssh -o StrictHostKeyChecking=no ${remoteUser}@${remoteHost}
+                            echo 'kubectl set image deployment/lista-de-articulos app-container=${env.dockerImage}' | ssh -o StrictHostKeyChecking=no ${remoteUser}@${remoteHost}
+                            echo 'kubectl rollout restart deployment/lista-de-articulos' | ssh -o StrictHostKeyChecking=no ${remoteUser}@${remoteHost}
+                        """
+                    }
+                }
             }
         }
-    }
-}
     }
 
     post {
