@@ -16,7 +16,7 @@ pipeline {
     steps {
         withCredentials([string(credentialsId: 'sonar_token', variable: 'SONAR_TOKEN')]) {
             sh """
-               docker exec -e SONAR_TOKEN=$SONAR_TOKEN -w /var/jenkins_home/workspace/myjob -i jenkins/jenkins-agent:latest \
+               docker exec -e SONAR_TOKEN=$SONAR_TOKEN -w /var/lib/jenkins/jobs/tp-credicoop -i jenkins/jenkins-agent:latest \
     sonarsource/sonar-scanner-cli
 
 
