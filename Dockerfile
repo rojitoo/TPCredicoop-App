@@ -29,5 +29,8 @@ EXPOSE 5000
 # Definimos una variable de entorno
 ENV NAME World
 
+# Cambiamos los permisos de la carpeta /app para que sea escribible por todos
+RUN chmod -R 777 /app
+
 # Corremos app.py cuando el container se inicia
 CMD ["python", "/app/app-python/app.py"]
