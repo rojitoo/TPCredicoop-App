@@ -1,8 +1,5 @@
 pipeline {
     agent any
-    tools {
-        nodejs "nodejs"
-    }
     environment {
         // Configuración de la máquina remota
         remoteHost = '192.168.0.31'
