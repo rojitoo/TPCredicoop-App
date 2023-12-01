@@ -22,10 +22,10 @@ pipeline {
             }
         }
 
-        stage('Code Quality') {
+        stage('SonarQube Scanner') {
             steps {
                 script {
-                    withSonarQubeEnv('sonarqube') {
+                    withSonarQubeEnv('scanner-sonnar-server') {
                         sh "${sonarScannerHome}/bin/sonar-scanner"
                     }
                 }
