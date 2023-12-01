@@ -31,7 +31,7 @@ pipeline {
                 }
                 script {
                     // Ejecutar el contenedor Docker
-                    sh "docker run -d -p 5000:5000 -v /home/lucas/archivos-app:/app --name flask_app ${env.dockerImage}"
+                    sh "docker run -d -p 5000:5000 --name flask_app ${env.dockerImage}"
                     sh "docker cp flask_app:/app /home/lucas/archivos-app"
             // Esperar hasta que el contenedor esté en ejecución
             waitUntil {
