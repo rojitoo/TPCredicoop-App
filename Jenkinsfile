@@ -32,13 +32,14 @@ pipeline {
                 script {
                     // Ejecutar el contenedor Docker
                     sh "docker run -d -p 5000:5000 -v /home/lucas/archivos-app:/app --name flask_app ${env.dockerImage}"
+                    sh "docker cp flask_app:/app /home/lucas/archivos-app"
             // Esperar hasta que el contenedor esté en ejecución
             waitUntil {
                 def status = sh(script: 'docker inspect --format \'{{.State.Status}}\' flask_app', returnStatus: true).trim()
                 return status == 'running'
             }
                     // Ejecutar test_app.py
-                    sh "docker exec flask_app python3 /app/test_app.py"
+                    sh "docker exec flask_app python3 /app/app-python/test_app.py"
                 }
             }
         }
@@ -49,7 +50,7 @@ pipeline {
                 sh """
                     docker exec -e SONAR_TOKEN=$SONAR_TOKEN tp-credicoop-sonarqube-1 sonar-scanner \
                         -Dsonar.projectKey=Tp_Credicoop \
-                        -Dsonar.sources=/opt/sonarqube/jenkins/jobs \
+                        -Dsonar.sources=/opt/sonarqube/archivos-app \
                         -Dsonar.host.url=http://localhost:9000 \
                         -Dsonar.login=admin \
                         -Dsonar.password=admin123
