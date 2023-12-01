@@ -14,15 +14,7 @@ pipeline {
     }
 
     stages {
-        stage('Construir imagen Docker') {
-            steps {
-                script {
-                    // Construir imagen Docker con un nombre específico
-                    def appImagen = docker.build("${env.dockerImage}", '.')
-                }
-            }
-        }
-
+        
         stage('SonarQube Scanner') {
             steps {
                 script {
@@ -33,6 +25,16 @@ pipeline {
                 }
             }
         }
+
+        stage('Construir imagen Docker') {
+            steps {
+                script {
+                    // Construir imagen Docker con un nombre específico
+                    def appImagen = docker.build("${env.dockerImage}", '.')
+                }
+            }
+        }
+
 
         stage('Construir y ejecutar contenedor Docker') {
             steps {
