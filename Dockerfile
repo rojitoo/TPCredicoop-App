@@ -31,4 +31,4 @@ EXPOSE 5000
 ENV NAME World
 
 # Corremos app.py cuando el container se inicia
-CMD ["python", "/app/app.py"]
+CMD ["python", "app/app.py"]
