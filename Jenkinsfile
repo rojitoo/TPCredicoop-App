@@ -31,6 +31,7 @@ tools {nodejs "nodejs"}
                 }
             }
         }
+
       stage('Construir y ejecutar contenedor Docker') {
             steps {
                 sshagent(['key_infra']) {
