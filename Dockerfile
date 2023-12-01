@@ -9,13 +9,12 @@ WORKDIR /app
 COPY . /app
 
 # Update de los paquetes e instalación de dependencias necesarias.
-
 RUN apt-get update && \
-    apt-get upgrade -y && \
     apt-get install -y --no-install-recommends \
         gcc \
         default-libmysqlclient-dev \
         pkg-config \
+    && apt-get upgrade -y \
     && rm -rf /var/lib/apt/lists/*
     
 # Instalamos Flask y el cliente de MySQL para Python
