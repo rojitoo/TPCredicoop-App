@@ -15,16 +15,16 @@ pipeline {
 
     stages {
         
-        stage('SonarQube Scanner') {
-            steps {
-                script {
-                    def scannerHome = tool 'nodejs';
-                    withSonarQubeEnv("scanner-sonnar-server") {
-                        sh "${tool('nodejs')}/bin/sonar-scanner"
-                    }
-                }
-            }
+     stage('Análisis SonarQube') {
+    steps {
+        withCredentials([string(credentialsId: 'sonar_token', variable: 'SONAR_TOKEN')]) {
+            sh """
+                docker exec -e SONAR_TOKEN=$SONAR_TOKEN tp-credicoop-sonarqube-1 sonar-scanner -Dsonar.projectKey=my_project -Dsonar.sources=. -Dsonar.host.url=http://localhost:9000 -Dsonar.login=jenkins -Dsonar.password=admin123
+            """
+
         }
+    }
+}
 
         stage('Construir imagen Docker') {
             steps {
