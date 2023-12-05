@@ -6,7 +6,7 @@ app = Flask(__name__, template_folder='template')
 
 # Configuración de la base de datos
 db_config = {
-    'host': '192.168.0.37', 
+    'host': '192.168.64.128', 
     'port': 3306,
     'user': 'root',
     'password': 'admin123',
