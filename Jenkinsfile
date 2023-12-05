@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment {
         // Configuración de la máquina remota
-        remoteHost = '192.168.0.33'
+        remoteHost = '192.168.0.31'
         remoteUser = 'lucas'
         privateKey = credentials('key_infra')
         dbname = 'joomla_db'
